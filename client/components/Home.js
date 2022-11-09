@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 /**
  * COMPONENT
  */
+
 export const Home = props => {
   const {username} = props
 

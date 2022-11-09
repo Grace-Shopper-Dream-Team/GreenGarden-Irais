@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+const {Sequelize, DataTypes} = require('sequelize')
 const db = require('../db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
@@ -8,12 +8,32 @@ const SALT_ROUNDS = 5;
 
 const User = db.define('user', {
   username: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     unique: true,
     allowNull: false
   },
   password: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
+  }, 
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false 
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false 
+  },
+  email: {
+    type: DataTypes.STRING, 
+    allowNull: false, 
+    unique: true,
+    validate: {
+      isEmail: true
+    }
+  }, 
+  isAdmin: {
+    type: DataTypes.BOOLEAN, 
+    defaultValue: false
   }
 })
 
