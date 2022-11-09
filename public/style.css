@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  text-align: center;
 }
 
 a {
@@ -18,4 +19,20 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.all-products-view {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.all-products-thumbnails {
+  width: 180px;
+  height: 120px;
+  margin-bottom: 0;
+  border-radius: 12px;
+}
+
+.all-products-tile {
+  padding: 30px 30px;
 }
