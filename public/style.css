@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  text-align: center;
 }
 
 a {
@@ -26,11 +27,12 @@ form div {
 }
 
 .all-products-thumbnails {
-  max-width: 180px;
+  width: 180px;
+  height: 120px;
   margin-bottom: 0;
   border-radius: 12px;
 }
 
-.all-products-description {
-  max-width: 250px;
+.all-products-tile {
+  padding: 30px 30px;
 }

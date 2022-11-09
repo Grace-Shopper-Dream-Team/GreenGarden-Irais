@@ -1,7 +1,7 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('../db');
+const { Sequelize, DataTypes } = require("sequelize");
+const db = require("../db");
 
-module.exports = db.define('product', {
+module.exports = db.define("product", {
   name: {
     type: DataTypes.STRING,
     unique: true,

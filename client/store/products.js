@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const GET_PRODUCTS = 'GET_PRODUCTS';
+const GET_PRODUCTS = "GET_PRODUCTS";
 
 //ACTION CREATORS
 export const _getProducts = (products) => {
@@ -14,7 +14,7 @@ export const _getProducts = (products) => {
 export const getProducts = () => {
   return async (dispatch) => {
     try {
-      const { data: products } = await axios.get('/api/products');
+      const { data: products } = await axios.get("/api/products");
       dispatch(_getProducts(products));
     } catch (error) {
       console.error(error);
