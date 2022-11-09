@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../db");
 
-const Address = db.define('address', {
+const Address = db.define("address", {
   street_address: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -9,7 +9,7 @@ const Address = db.define('address', {
   city: {
     type: DataTypes.STRING,
     allowNull: false,
-   },
+  },
   state: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -18,6 +18,6 @@ const Address = db.define('address', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  });
+});
 
-  module.exports = Address
+module.exports = Address;

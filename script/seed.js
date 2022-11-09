@@ -165,7 +165,7 @@ async function seed() {
       desc: `In recent years, the ubiquitous fiddle leaf fig has dominated all other entrants in the competition for most popular in-house tree-like plants. But we think it’s time to give this understated but stately tree — with its large, deep green leaves — a second look and another chance. Here’s how to maintain a rubber plant as a striking part of your home decor for years to come.`,
     }),
     Product.create({
-      name: "String of Pears",
+      name: "String of Pearls",
       imageUrl:
         "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_487/project%20prism%2Fcolor%20search%20archive%2F5e06e150da339f84d1b4b795655e524f485c7679",
       price: 22.56,
@@ -173,6 +173,8 @@ async function seed() {
     }),
   ]);
 
+
+  console.log(`seeded ${products.length} products`);
   // Creating Line Items (Products in cart & purchased, organized by user)
   const lineItems = await Promise.all([
     LineItem.create({
