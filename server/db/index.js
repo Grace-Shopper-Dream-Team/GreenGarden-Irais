@@ -1,8 +1,10 @@
 //this is the access point for all things database related!
+
 const db = require('./db')
 
 const User = require('./models/User')
 const Address = require("./models/Address")
+const Product = require('./models/Product');
 
 
 Address.belongsTo(User)
@@ -16,5 +18,6 @@ module.exports = {
   models: {
     User,
     Address
+    Product,
   },
 };
