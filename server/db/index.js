@@ -9,6 +9,17 @@ const Product = require("./models/Product");
 Address.belongsTo(User);
 User.hasOne(Address);
 
+const Order = require("./models/Order");
+const LineItem = require("./models/LineItem");
+
+
+// TODO: Keep these commented out for now until we've built the shopping cart page with dummy data and tested it.
+// Order.belongsTo(User);
+// User.hasMany(Order);
+// LineItem.belongsTo(Order);
+// Order.hasMany(LineItem);
+
+
 //associations could go here!
 
 module.exports = {
@@ -17,5 +28,7 @@ module.exports = {
     User,
     Address,
     Product,
+    Order,
+    LineItem,
   },
 };
