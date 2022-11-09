@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { getProducts } from "../store/products";
 import { Link } from "react-router-dom";
-import SingleProduct from "./SingleProduct";
 
 class AllProducts extends React.Component {
   componentDidMount() {

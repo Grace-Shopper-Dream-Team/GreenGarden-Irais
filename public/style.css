@@ -21,6 +21,10 @@ form div {
   display: inline-block;
 }
 
+img {
+  border-radius: 12px;
+}
+
 .all-products-view {
   display: flex;
   flex-wrap: wrap;
@@ -30,9 +34,12 @@ form div {
   width: 180px;
   height: 120px;
   margin-bottom: 0;
-  border-radius: 12px;
 }
 
 .all-products-tile {
   padding: 30px 30px;
+}
+
+.confirmation-image {
+  max-width: 500px;
 }
