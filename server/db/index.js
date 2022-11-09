@@ -5,13 +5,8 @@ const db = require("./db");
 const User = require("./models/User");
 const Address = require("./models/Address");
 const Product = require("./models/Product");
-
-Address.belongsTo(User);
-User.hasOne(Address);
-
 const Order = require("./models/Order");
 const LineItem = require("./models/LineItem");
-
 
 // TODO: Keep these commented out for now until we've built the shopping cart page with dummy data and tested it.
 // Order.belongsTo(User);
@@ -19,6 +14,8 @@ const LineItem = require("./models/LineItem");
 // LineItem.belongsTo(Order);
 // Order.hasMany(LineItem);
 
+Address.belongsTo(User);
+User.hasOne(Address);
 
 //associations could go here!
 
