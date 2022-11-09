@@ -5,11 +5,12 @@ const lineItem = db.define("lineItem", {
   productId: {
     type: Sequelize.INTEGER,
   },
-  allOrdersId: {
+  orderId: {
     type: Sequelize.INTEGER,
   },
   price: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
   },
   qty: {
     type: Sequelize.INTEGER,

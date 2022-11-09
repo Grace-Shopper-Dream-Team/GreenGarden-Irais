@@ -2,11 +2,10 @@ const Sequelize = require("sequelize");
 const db = require("../db");
 
 const Order = db.define("order", {
-  email: {
-    type: Sequelize.STRING,
-    allowNull: true,
+  userId: {
+    type: Sequelize.INTEGER,
   },
-  shippingAddress: {
+  email: {
     type: Sequelize.STRING,
     allowNull: true,
   },
