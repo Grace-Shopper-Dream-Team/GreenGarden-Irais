@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Address, Product },
+  models: { User, Address, Product, LineItem, Order }
 } = require("../server/db");
 
 /**
@@ -12,7 +12,6 @@ const {
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-
   console.log("db synced!");
 
   // Creating Users
@@ -57,7 +56,7 @@ async function seed() {
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
 
-  // creating addresses
+  // Creating Addresses
   const addresses = await Promise.all([
     Address.create({
       street_address: "2245 Prospect Ave",
@@ -98,7 +97,6 @@ async function seed() {
 
   console.log(`seeded ${addresses.length} addresses`);
   console.log(`seeded successfully`);
-
   console.log("db synced!");
 
   // Creating Products
@@ -175,7 +173,116 @@ async function seed() {
     }),
   ]);
 
+
   console.log(`seeded ${products.length} products`);
+  // Creating Line Items (Products in cart & purchased, organized by user)
+  const lineItems = await Promise.all([
+    LineItem.create({
+      productId: 5,
+      orderId: 1,
+      price: 12.99,
+      qty: 1,
+    }),
+    LineItem.create({
+      productId: 2,
+      orderId: 2,
+      price: 34.89,
+      qty: 2,
+    }),
+    LineItem.create({
+      productId: 6,
+      orderId: 3,
+      price: 15.98,
+      qty: 8,
+    }),
+    LineItem.create({
+      productId: 3,
+      orderId: 4,
+      price: 258.78,
+      qty: 3,
+    }),
+    LineItem.create({
+      productId: 9,
+      orderId: 5,
+      price: 88.99,
+      qty: 1,
+    }),
+    LineItem.create({
+      productId: 10,
+      orderId: 6,
+      price: 22.56,
+      qty: 5,
+    }),
+  ]);
+
+  // Creating Orders
+  const orders = await Promise.all([
+    Order.create({
+      userId: 1,
+      email: "codym@email.com",
+      status: "In Cart",
+      orderDate: "11/3/22",
+    }),
+    Order.create({
+      userId: 2,
+      email: "jimmiek@email.com",
+      status: "In Cart",
+      orderDate: "11/3/22",
+    }),
+    Order.create({
+      userId: 3,
+      email: "donr@email.com",
+      status: "In Cart",
+      orderDate: "11/2/22",
+    }),
+    Order.create({
+      userId: 4,
+      email: "kr@email.com",
+      status: "In Cart",
+      orderDate: "11/2/22",
+    }),
+    Order.create({
+      userId: 5,
+      email: "jd@email.com",
+      status: "In Cart",
+      orderDate: "11/2/22",
+    }),
+    Order.create({
+      userId: 1,
+      email: "codym@email.com",
+      status: "In Cart",
+      orderDate: "11/1/22",
+    }),
+    Order.create({
+      userId: 2,
+      email: "jimmiek@email.com",
+      status: "Purchased",
+      orderDate: "10/31/22",
+    }),
+    Order.create({
+      userId: 3,
+      email: "donr@email.com",
+      status: "Purchased",
+      orderDate: "10/31/22",
+    }),
+    Order.create({
+      userId: 4,
+      email: "kr@email.com",
+      status: "Purchased",
+      orderDate: "10/31/22",
+    }),
+    Order.create({
+      userId: 5,
+      email: "jd@email.com",
+      status: "Purchased",
+      orderDate: "10/28/22",
+    }),
+  ]);
+
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${products.length} products`);
+  console.log(`seeded ${lineItems.length} lineItems`);
+  console.log(`seeded ${orders.length} orders`);
   console.log(`seeded successfully`);
 
   return {
@@ -204,6 +311,26 @@ async function seed() {
       moneyTree: products[7],
       rubberPlant: products[8],
       stringOfPearls: products[9],
+    },
+    lineItems: {
+      lavenderLI: lineItems[0],
+      crotonLI: lineItems[1],
+      lemonButtonFernLI: lineItems[2],
+      ficusLI: lineItems[3],
+      rubberPlantLI: lineItems[4],
+      stringOfPearlsLI: lineItems[5],
+    },
+    orders: {
+      codyOrder: orders[0],
+      jimmieOrder: orders[1],
+      donOrder: orders[2],
+      kevinOrder: orders[3],
+      johnOrder: orders[4],
+      codyOrder: orders[5],
+      jimmieOrder: orders[6],
+      donOrder: orders[7],
+      kevinOrder: orders[8],
+      johnOrder: orders[9],
     },
   };
 }
