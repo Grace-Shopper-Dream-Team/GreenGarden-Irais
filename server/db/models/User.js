@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')
+const {Sequelize, DataTypes} = require('sequelize')
 const db = require('../db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
@@ -8,12 +8,32 @@ const SALT_ROUNDS = 5;
 
 const User = db.define('user', {
   username: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     unique: true,
     allowNull: false
   },
   password: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
+  }, 
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false 
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false 
+  },
+  email: {
+    type: DataTypes.STRING, 
+    allowNull: false, 
+    unique: true,
+    validate: {
+      isEmail: true
+    }
+  }, 
+  isAdmin: {
+    type: DataTypes.BOOLEAN, 
+    defaultValue: false
   }
 })
 
@@ -28,7 +48,7 @@ User.prototype.correctPassword = function(candidatePwd) {
 }
 
 User.prototype.generateToken = function() {
-  return jwt.sign({id: this.id}, process.env.JWT)
+  return jwt.sign({id: this.id}, process.env.SECRET)
 }
 
 /**
@@ -46,7 +66,7 @@ User.authenticate = async function({ username, password }){
 
 User.findByToken = async function(token) {
   try {
-    const {id} = await jwt.verify(token, process.env.JWT)
+    const {id} = await jwt.verify(token, process.env.SECRET)
     const user = User.findByPk(id)
     if (!user) {
       throw 'nooo'
