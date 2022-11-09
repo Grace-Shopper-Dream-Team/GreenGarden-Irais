@@ -9,7 +9,7 @@ const LineItem = db.define("lineItem", {
     type: Sequelize.INTEGER,
   },
   price: {
-    type: DataTypes.DECIMAL(10, 2),
+    type: Sequelize.DECIMAL(10, 2),
     allowNull: false,
   },
   qty: {

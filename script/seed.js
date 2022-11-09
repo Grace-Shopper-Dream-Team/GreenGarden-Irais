@@ -97,7 +97,6 @@ async function seed() {
 
   console.log(`seeded ${addresses.length} addresses`);
   console.log(`seeded successfully`);
-
   console.log("db synced!");
 
   // Creating Products
