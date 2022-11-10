@@ -3,7 +3,8 @@ const {
   models: { Order, LineItem },
 } = require("../db/index");
 
-//GET ROUTE: api/orders
+// GET ROUTE: api/orders
+// Getting all Orders to Display (Admin feature)
 router.get("/", async (req, res, next) => {
   try {
     const order = await Order.findAll(req.params.orderId);
@@ -13,8 +14,8 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//GET ROUTE: api/orders/:orderId/lineItems
-//TODO: fix this route
+// GET ROUTE: api/orders/:orderId/lineItems
+// Getting a cart display for a specific user OR showing purchased order w all items in that order
 router.get("/:orderId/lineItems", async (req, res, next) => {
   try {
     const cartItems = await LineItem.findAll({
@@ -27,7 +28,8 @@ router.get("/:orderId/lineItems", async (req, res, next) => {
   }
 });
 
-//GET ROUTE: api/orders/:orderId/lineItems/:lineItemId
+// GET ROUTE: api/orders/:orderId/lineItems/:lineItemId
+// Getting a specific item from that users cart OR a specific item from one of their orders
 router.get("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   try {
     const item = await LineItem.findAll({
@@ -56,16 +58,14 @@ router.post("/", async (req, res, next) => {
   try {
     const order = await Order.create({ userId: 1 });
     const product = req.body;
-    res
-      .status(201)
-      .send(
-        await LineItem.create({
-          orderId: order.id,
-          productId: product.id,
-          price: product.price,
-          quantity: 1,
-        })
-      );
+    res.status(201).send(
+      await LineItem.create({
+        orderId: order.id,
+        productId: product.id,
+        price: product.price,
+        quantity: 1,
+      })
+    );
   } catch (error) {
     next(error);
   }

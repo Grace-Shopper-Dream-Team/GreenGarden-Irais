@@ -7,6 +7,12 @@ class SingleOrder extends React.Component {
     super();
   }
 
+  componentDidMount() {
+    this.props.getSingleOrder(2);
+
+    console.log(this.props);
+  }
+
   render() {
     const order = this.props.order;
     return (
@@ -14,9 +20,13 @@ class SingleOrder extends React.Component {
         <div id="single-product-detail" className="row">
           <div className="column rm1" key={order.id}>
             <h1> Shopping Cart</h1>
-            {order.orderId ? ( <div><p>Order Number: {order.orderId}</p>
-            <p>Price: $ {order.price}</p>
-            <p>Quantity: {order.qty}</p></div>): null }
+            {order.orderId ? (
+              <div>
+                <p>Order Number: {order.orderId}</p>
+                <p>Price: $ {order.price}</p>
+                <p>Quantity: {order.qty}</p>
+              </div>
+            ) : null}
           </div>
         </div>
         <hr />

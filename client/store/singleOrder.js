@@ -1,8 +1,10 @@
 import axios from "axios";
 
+// ACTION TYPES
 const SET_SINGLE_ORDER = "SET_SINGLE_ORDER";
 const CREATE_SINGLE_ORDER = "CREATE_SINGLE_ORDER";
 
+// ACTION CREATORS
 export const setSingleOrder = (order) => {
   return {
     type: SET_SINGLE_ORDER,
@@ -17,6 +19,7 @@ export const _createSingleOrder = (product) => {
   };
 };
 
+// THUNKS
 export const fetchSingleOrder = (id) => {
   return async (dispatch) => {
     try {
@@ -35,6 +38,7 @@ export const createSingleOrder = (product) => {
   };
 };
 
+// REDUCERS
 const initialState = {
   userId: "",
   email: "",
