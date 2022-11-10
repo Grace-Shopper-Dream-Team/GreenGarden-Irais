@@ -14,6 +14,7 @@ router.get("/", async (req, res, next) => {
 });
 
 //GET ROUTE: api/orders/:orderId/lineItems
+//TODO: fix this route
 router.get("/:orderId/lineItems", async (req, res, next) => {
   try {
     const cartItems = await LineItem.findAll({
@@ -25,17 +26,6 @@ router.get("/:orderId/lineItems", async (req, res, next) => {
     next(error);
   }
 });
-
-/*
-router.post('/:orderId/lineItems', (req, res, next) => {
-  LineItem.bulkCreate(req.body)
-  .then(lineItems => {
-    req.order.reload({include: [{ all: true, include: [{all: true}] }]})
-    res.json(lineItems)
-  })
-  .catch(next)
-});\
-*/
 
 //GET ROUTE: api/orders/:orderId/lineItems/:lineItemId
 router.get("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
