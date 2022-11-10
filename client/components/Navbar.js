@@ -31,6 +31,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   </div>
 );
 
+
 /**
  * CONTAINER
  */
