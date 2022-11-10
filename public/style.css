@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
-  
+  text-align: center;
+
 }
 
 a {
@@ -21,6 +22,27 @@ form div {
   display: inline-block;
 }
 
-.red {
-  background-color: red;
+
+img {
+  border-radius: 12px;
 }
+
+.all-products-view {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.all-products-thumbnails {
+  width: 180px;
+  height: 120px;
+  margin-bottom: 0;
+}
+
+.all-products-tile {
+  padding: 30px 30px;
+}
+
+.confirmation-image {
+  max-width: 500px;
+}
+
