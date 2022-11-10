@@ -3,7 +3,7 @@
 
 const {
   db,
-  models: { User, Address, Product, LineItem, Order }
+  models: { User, Address, Product, LineItem, Order },
 } = require("../server/db");
 
 /**
@@ -174,7 +174,6 @@ async function seed() {
     }),
   ]);
 
-
   console.log(`seeded ${products.length} products`);
   // Creating Line Items (Products in cart & purchased, organized by user)
   const lineItems = await Promise.all([
@@ -192,25 +191,25 @@ async function seed() {
     }),
     LineItem.create({
       productId: 6,
-      orderId: 3,
+      orderId: 2,
       price: 15.98,
       qty: 8,
     }),
     LineItem.create({
       productId: 3,
-      orderId: 4,
+      orderId: 2,
       price: 258.78,
       qty: 3,
     }),
     LineItem.create({
       productId: 9,
-      orderId: 5,
+      orderId: 3,
       price: 88.99,
       qty: 1,
     }),
     LineItem.create({
       productId: 10,
-      orderId: 6,
+      orderId: 3,
       price: 22.56,
       qty: 5,
     }),
