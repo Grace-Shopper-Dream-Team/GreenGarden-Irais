@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   text-align: center;
+
 }
 
 a {
@@ -20,6 +21,7 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
 
 img {
   border-radius: 12px;
@@ -43,3 +45,4 @@ img {
 .confirmation-image {
   max-width: 500px;
 }
+
