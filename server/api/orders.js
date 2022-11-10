@@ -52,4 +52,14 @@ router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   }
 });
 
+router.post('/', async (req, res, next) => {
+  try {
+    const order = await Order.create({ userId: 1 })
+    const product = req.body;
+    res.status(201).send( await LineItem.create({ orderId: order.id, productId: product.id, price: product.price, quantity:1  }));
+  } catch (error) {
+    next(error);
+  }
+})
+
 module.exports = router;

@@ -1,3 +1,4 @@
+
 "use strict";
 
 const {
@@ -280,6 +281,7 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${products.length} products`);
+  console.log(`seeded ${addresses.length} addresses`);
   console.log(`seeded ${lineItems.length} lineItems`);
   console.log(`seeded ${orders.length} orders`);
   console.log(`seeded successfully`);
