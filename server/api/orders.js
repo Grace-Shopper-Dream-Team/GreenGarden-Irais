@@ -54,10 +54,53 @@ router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+// ADD ROUTE:
+// Adding items to cart.
+// TODO: Maybe break this up into 2 diff post routes, 1 to create a new order, another to create a new LineItem w/o a new orderID.
+
+// // CREATING AN ORDER ID
+// router.post("/", async (req, res, next) => {
+//   try {
+//     console.log("-------->", req.body);
+//     const potOrder = await Order.findByPk(req.body.orderId);
+
+//     // console.log("HERE IS YOUR POT ORDER", potOrder);
+
+//     if (potOrder === null) {
+//       const order = await Order.create();
+//       res.status(201).send(order);
+//     } else {
+//       console.error("no pot for you :( ");
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+// // CREATING A LINE ITEM
+// router.post("/", async (req, res, next) => {
+//   try {
+//     const order = await Order.create({ userId: 1 });
+//     const product = req.body;
+//     res.status(201).send(
+//       await LineItem.create({
+//         orderId: order.id,
+//         productId: product.id,
+//         price: product.price,
+//         quantity: 1,
+//       })
+//     );
+//   } catch (error) {
+//     next(error);
+//   }
+// });
+
+router.post("/order/:id", async (req, res, next) => {
   try {
-    const order = await Order.create({ userId: 1 });
+    const order = await Order.create();
     const product = req.body;
+    const potentialOrder = await Order.findByPk(req.body.orderId);
+
     res.status(201).send(
       await LineItem.create({
         orderId: order.id,

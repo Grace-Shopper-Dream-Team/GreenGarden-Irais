@@ -8,9 +8,8 @@ class SingleOrder extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getSingleOrder(2);
-
-    console.log(this.props);
+    // this.props.getSingleOrder(this.props.match.params.id);
+    console.log(">>>>>>>>>", this.props);
   }
 
   render() {

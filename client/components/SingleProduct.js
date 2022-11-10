@@ -21,9 +21,14 @@ class SingleProduct extends React.Component {
             <h1>{product.name}</h1>
             <p>Price: $ {product.price}</p>
             <p>Description: {product.desc}</p>
-            <button type="button" onClick={()=> {
-              this.props.createSingleOrder(product)
-            }}>Add to Cart</button>
+            <button
+              type="button"
+              onClick={() => {
+                this.props.createSingleOrder(product, orderId);
+              }}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
         <hr />
@@ -36,10 +41,16 @@ const mapState = (state) => {
     product: state.singleProduct,
   };
 };
+
+let orderId = 10;
+
 const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
-    createSingleOrder:(product) => dispatch(createSingleOrder(product))
+    createSingleOrder: (product, orderId) => {
+      orderId += 1;
+      dispatch(createSingleOrder(product, orderId));
+    },
   };
 };
 

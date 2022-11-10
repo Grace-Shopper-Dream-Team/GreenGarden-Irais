@@ -31,7 +31,10 @@ export const fetchSingleOrder = (id) => {
   };
 };
 
-export const createSingleOrder = (product) => {
+export const createSingleOrder = (product, orderId) => {
+  product.orderId = orderId;
+  console.log("ORDER ID", orderId);
+  console.log("PRODUCT", product);
   return async (dispatch) => {
     const { data } = await axios.post(`/api/orders`, product);
     dispatch(_createSingleOrder(data));
