@@ -77,7 +77,7 @@ router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
 //   }
 // });
 
-// // CREATING A LINE ITEM
+// // CREATING AN ORDER & LINE ITEM (original version)
 // router.post("/", async (req, res, next) => {
 //   try {
 //     const order = await Order.create({ userId: 1 });
@@ -95,20 +95,27 @@ router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
 //   }
 // });
 
-router.post("/order/:id", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const order = await Order.create();
-    const product = req.body;
-    const potentialOrder = await Order.findByPk(req.body.orderId);
+    console.log("post route order", order);
+    res.status(201).send(order);
+  } catch (error) {
+    next(error);
+  }
+});
 
-    res.status(201).send(
-      await LineItem.create({
-        orderId: order.id,
-        productId: product.id,
-        price: product.price,
-        quantity: 1,
-      })
-    );
+router.post("/:orderId/lineItems", async (req, res, next) => {
+  console.log("new line item post", req.body);
+  try {
+    const lineItem = await LineItem.create({
+      orderId: req.params.orderId,
+      productId: req.body.id,
+      price: req.body.price,
+      qty: 1,
+    });
+
+    res.send(lineItem);
   } catch (error) {
     next(error);
   }

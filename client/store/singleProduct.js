@@ -20,14 +20,7 @@ export const fetchSingleProduct = (id) => {
   };
 };
 
-const initialState = {
-  name: "",
-  imageUrl: "",
-  price: "",
-  description: "",
-};
-
-export default function singleProductReducer(state = initialState, action) {
+export default function singleProductReducer(state = {}, action) {
   switch (action.type) {
     case SET_SINGLE_PRODUCT:
       return action.product;
@@ -35,3 +28,19 @@ export default function singleProductReducer(state = initialState, action) {
       return state;
   }
 }
+
+// const initialState = {
+//   name: "",
+//   imageUrl: "",
+//   price: "",
+//   description: "",
+// };
+
+// export default function singleProductReducer(state = initialState, action) {
+//   switch (action.type) {
+//     case SET_SINGLE_PRODUCT:
+//       return action.product;
+//     default:
+//       return state;
+//   }
+// }
