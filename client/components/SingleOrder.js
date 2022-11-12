@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSingleOrder } from "../store/singleOrder";
+import { deleteLineItem } from "../store/singleOrder";
+import ChangeQuantity from "./ChangeQuantity";
 
 class SingleOrder extends React.Component {
   constructor() {
@@ -27,13 +28,23 @@ class SingleOrder extends React.Component {
             {order.id ? (
               lineItems.map((item) => (
                 <div key={item.id}>
-                  <h2>Item: {products[item.productId - 1].name}</h2>
-                  <img
+                  <h2>Product Id: {item.productId}</h2>
+                  {/* <img
                     src={products[item.productId - 1].imageUrl}
                     className="cart-image"
-                  />
+                  /> */}
                   <p>Item Price: ${item.price}</p>
-                  <p>Item Quantity: {item.qty}</p>
+                  <ChangeQuantity />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      console.log("item", item);
+                      console.log("order id", order.id);
+                      this.props.deleteLineItem(item, order.id);
+                    }}
+                  >
+                    Delete this item
+                  </button>
                 </div>
               ))
             ) : (
@@ -57,13 +68,12 @@ const mapState = (state) => {
   return {
     currentOrder: state.singleOrder,
     currentLineItems: state.lineItems,
-    productInfo: state.products,
   };
 };
 const mapDispatch = (dispatch) => {
   return {
-    getSingleOrder: (id) => dispatch(fetchSingleOrder(id)),
-    getLineItems: (orderId) => dispatch(getLineItems(orderId)),
+    deleteLineItem: (product, orderId) =>
+      dispatch(deleteLineItem(product, orderId)),
   };
 };
 

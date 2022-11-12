@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const {
-  models: { Order, LineItem },
+  models: { Order, LineItem, Product },
 } = require("../db/index");
 
 // GET ROUTE: api/orders
-// Getting all Orders (Admin feature)
+// Get all Orders (Admin feature)
 router.get("/", async (req, res, next) => {
   try {
     const order = await Order.findAll();
@@ -31,6 +31,7 @@ router.get("/:orderId/lineItems", async (req, res, next) => {
   try {
     const cartItems = await LineItem.findAll({
       where: { orderId: req.params.orderId },
+      // include: Product,
     });
     console.log(cartItems);
     res.send(cartItems);
@@ -55,11 +56,13 @@ router.get("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
 //DELETE ROUTE: api/orders/:orderId/lineItems/:lineItemId
 //This route deletes 1 item from a cart
 router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
+  console.log("router.delete req params", req.params);
+  console.log("router.delete req body", req.body);
   try {
-    const item = await LineItem.destroy({
-      where: { id: req.params.lineItemId },
-    });
-    res.status(204).send(item);
+    const item = await LineItem.findByPk(req.params.lineItemId);
+    item.destroy();
+    console.log("router.delete item deleted", item);
+    res.send(item);
   } catch (error) {
     next(error);
   }

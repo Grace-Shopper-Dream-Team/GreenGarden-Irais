@@ -1,14 +1,17 @@
 import axios from "axios";
 
 // ACTION TYPES
+// Orders action types:
 const SET_SINGLE_ORDER = "SET_SINGLE_ORDER";
 const CREATE_SINGLE_ORDER = "CREATE_SINGLE_ORDER";
 
+// Line items action types:
 const GET_LINE_ITEMS = "GET_LINE_ITEMS";
 const CREATE_LINE_ITEM = "CREATE_LINE_ITEM";
+const DELETE_LINE_ITEM = "DELETE_LINE_ITEM";
 
 // ACTION CREATORS
-// Orders:
+// Get order info:
 export const setSingleOrder = (order) => {
   return {
     type: SET_SINGLE_ORDER,
@@ -16,6 +19,7 @@ export const setSingleOrder = (order) => {
   };
 };
 
+// Create new order:
 export const _createSingleOrder = (order) => {
   return {
     type: CREATE_SINGLE_ORDER,
@@ -31,7 +35,7 @@ export const _createSingleOrder = (order) => {
 //   };
 // };
 
-// Line Items:
+// Get line items for an order:
 export const _getLineItems = (lineItems) => {
   return {
     type: GET_LINE_ITEMS,
@@ -39,9 +43,18 @@ export const _getLineItems = (lineItems) => {
   };
 };
 
+// Create a new line item (adds line item to an order):
 export const _createLineItem = (product) => {
   return {
     type: CREATE_LINE_ITEM,
+    product,
+  };
+};
+
+// Delete a line item:
+export const _deleteLineItem = (product) => {
+  return {
+    type: DELETE_LINE_ITEM,
     product,
   };
 };
@@ -61,21 +74,17 @@ export const fetchSingleOrder = (id) => {
 };
 
 // Create new order and create a new line item with that order id:
-export const createSingleOrder = (product, history) => {
-  console.log("create order product", product);
+export const createSingleOrder = (product) => {
   return async (dispatch) => {
     const { data: newOrder } = await axios.post(`/api/orders`);
-    console.log("createSingleOrder thunk data", newOrder);
 
     const { data: newLineItem } = await axios.post(
       `/api/orders/${newOrder.id}/lineItems`,
       product
     );
-    // console.log("create order line item", newLineItem);
+
     dispatch(_createSingleOrder(newOrder));
     dispatch(_createLineItem(newLineItem));
-
-    // history.push(`/cart/${newOrder.id}`);
   };
 };
 
@@ -102,7 +111,7 @@ export const getLineItems = (orderId) => {
   };
 };
 
-// Create a new line item (without creating an order):
+// Create a new line item (without creating a new order):
 export const createLineItem = (product, orderId) => {
   return async (dispatch) => {
     const { data: lineItem } = await axios.post(
@@ -110,6 +119,20 @@ export const createLineItem = (product, orderId) => {
       product
     );
     dispatch(_createLineItem(lineItem));
+  };
+};
+
+// Delete a line item
+export const deleteLineItem = (product, orderId) => {
+  console.log("thunk product", product);
+  console.log("thunk order id", orderId);
+  return async (dispatch) => {
+    const { data: oldLineItem } = await axios.delete(
+      `/api/orders/${orderId}/lineItems/${product.id}`,
+      product
+    );
+    console.log("thunk delete line item data", oldLineItem);
+    dispatch(_deleteLineItem(oldLineItem));
   };
 };
 
@@ -121,8 +144,6 @@ export function singleOrderReducer(state = [], action) {
       return action.order;
     case CREATE_SINGLE_ORDER:
       return action.order;
-    // case CREATE_LINE_ITEM:
-    //   return action.product;
     default:
       return state;
   }
@@ -135,6 +156,8 @@ export function lineItemsReducer(state = [], action) {
       return action.lineItems;
     case CREATE_LINE_ITEM:
       return [...state, action.product];
+    case DELETE_LINE_ITEM:
+      return state.filter((lineItem) => lineItem.id !== action.product.id);
     default:
       return state;
   }
