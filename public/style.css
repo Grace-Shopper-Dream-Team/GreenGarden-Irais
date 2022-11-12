@@ -1,7 +1,6 @@
 body {
   font-family: sans-serif;
   text-align: center;
-
 }
 
 a {
@@ -22,9 +21,13 @@ form div {
   display: inline-block;
 }
 
-
 img {
   border-radius: 12px;
+}
+
+.cart-image {
+  width: 100px;
+  height: 100px;
 }
 
 .all-products-view {
@@ -45,4 +48,3 @@ img {
 .confirmation-image {
   max-width: 500px;
 }
-

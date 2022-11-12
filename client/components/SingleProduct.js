@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
+import { fetchSingleOrder } from "../store/singleOrder";
 import { createSingleOrder } from "../store/singleOrder";
 import { createLineItem } from "../store/singleOrder";
 

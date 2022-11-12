@@ -4,10 +4,21 @@ const {
 } = require("../db/index");
 
 // GET ROUTE: api/orders
-// Getting all Orders to Display (Admin feature)
+// Getting all Orders (Admin feature)
 router.get("/", async (req, res, next) => {
   try {
-    const order = await Order.findAll(req.params.orderId);
+    const order = await Order.findAll();
+    res.json(order);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET ROUTE:  api/orders/:orderId
+// Get information for a specific order
+router.get("/:orderId", async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.orderId);
     res.json(order);
   } catch (error) {
     next(error);
@@ -15,7 +26,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // GET ROUTE: api/orders/:orderId/lineItems
-// Getting a cart display for a specific user OR showing purchased order w all items in that order
+// Get all line items for a specific order
 router.get("/:orderId/lineItems", async (req, res, next) => {
   try {
     const cartItems = await LineItem.findAll({
