@@ -9,6 +9,7 @@ const CREATE_SINGLE_ORDER = "CREATE_SINGLE_ORDER";
 const GET_LINE_ITEMS = "GET_LINE_ITEMS";
 const CREATE_LINE_ITEM = "CREATE_LINE_ITEM";
 const DELETE_LINE_ITEM = "DELETE_LINE_ITEM";
+const UPDATE_ITEM_QUANTITY = "UPDATE_ITEM_QUANTITY";
 
 // ACTION CREATORS
 // Get order info:
@@ -59,16 +60,23 @@ export const _deleteLineItem = (product) => {
   };
 };
 
+// Update quantity of a line item
+export const _updateQuantity = (lineItem) => {
+  return {
+    type: UPDATE_ITEM_QUANTITY,
+    lineItem,
+  };
+};
+
 // THUNKS
 // Get order information for a specific order:
 export const fetchSingleOrder = (id) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/orders/${id}`);
-      console.log("fetch single order data", data);
       dispatch(setSingleOrder(data));
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 };
@@ -103,7 +111,6 @@ export const getLineItems = (orderId) => {
       const { data: lineItems } = await axios.get(
         `/api/orders/${orderId}/lineItems`
       );
-      console.log("thunk get line items", lineItems);
       dispatch(_getLineItems(lineItems));
     } catch (error) {
       console.error(error);
@@ -122,17 +129,29 @@ export const createLineItem = (product, orderId) => {
   };
 };
 
-// Delete a line item
+// Delete a line item:
 export const deleteLineItem = (product, orderId) => {
-  console.log("thunk product", product);
-  console.log("thunk order id", orderId);
   return async (dispatch) => {
     const { data: oldLineItem } = await axios.delete(
       `/api/orders/${orderId}/lineItems/${product.id}`,
       product
     );
-    console.log("thunk delete line item data", oldLineItem);
     dispatch(_deleteLineItem(oldLineItem));
+  };
+};
+
+// Update an item's order quantity:
+export const updateQuantity = (lineItem) => {
+  return async (dispatch) => {
+    try {
+      const { data: updatedItem } = await axios.put(
+        `/api/orders/${lineItem.orderId}/lineItems/${lineItem.id}`,
+        lineItem
+      );
+      dispatch(_updateQuantity(updatedItem));
+    } catch (error) {
+      console.error(error);
+    }
   };
 };
 
@@ -158,6 +177,11 @@ export function lineItemsReducer(state = [], action) {
       return [...state, action.product];
     case DELETE_LINE_ITEM:
       return state.filter((lineItem) => lineItem.id !== action.product.id);
+    case UPDATE_ITEM_QUANTITY:
+      const items = state.filter(
+        (lineItem) => lineItem.id !== action.lineItem.id
+      );
+      return [...items, action.lineItem];
     default:
       return state;
   }

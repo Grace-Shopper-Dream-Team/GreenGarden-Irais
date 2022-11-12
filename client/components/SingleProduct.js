@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
-import { fetchSingleOrder } from "../store/singleOrder";
 import { createSingleOrder } from "../store/singleOrder";
 import { createLineItem } from "../store/singleOrder";
 
@@ -11,7 +10,6 @@ class SingleProduct extends React.Component {
   }
   componentDidMount() {
     this.props.getSingleProduct(this.props.match.params.productId);
-    console.log("current order", this.props.currentOrder);
   }
 
   render() {
@@ -27,12 +25,11 @@ class SingleProduct extends React.Component {
             <button
               type="button"
               onClick={() => {
-                // this.props.createSingleOrder(product);
                 if (this.props.currentOrder.length === 0) {
                   console.log("no current order");
                   this.props.createSingleOrder(product);
                 } else {
-                  console.log("order in progress", this.props.currentOrder.id);
+                  console.log("order in progress");
                   this.props.createLineItem(
                     product,
                     this.props.currentOrder.id
@@ -50,7 +47,6 @@ class SingleProduct extends React.Component {
   }
 }
 const mapState = (state) => {
-  console.log("SingleProduct mapState", state);
   return {
     product: state.singleProduct,
     currentOrder: state.singleOrder,

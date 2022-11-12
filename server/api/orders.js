@@ -56,8 +56,6 @@ router.get("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
 //DELETE ROUTE: api/orders/:orderId/lineItems/:lineItemId
 //This route deletes 1 item from a cart
 router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
-  console.log("router.delete req params", req.params);
-  console.log("router.delete req body", req.body);
   try {
     const item = await LineItem.findByPk(req.params.lineItemId);
     item.destroy();
@@ -120,7 +118,6 @@ router.post("/", async (req, res, next) => {
 });
 
 router.post("/:orderId/lineItems", async (req, res, next) => {
-  console.log("new line item post", req.body);
   try {
     const lineItem = await LineItem.create({
       orderId: req.params.orderId,
@@ -130,6 +127,17 @@ router.post("/:orderId/lineItems", async (req, res, next) => {
     });
 
     res.send(lineItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// PUT /api/orders/:orderId/lineItems/:lineItemId
+router.put("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
+  try {
+    const item = await LineItem.findByPk(req.params.lineItemId);
+    const updatedItem = await item.update(req.body);
+    res.send(updatedItem);
   } catch (error) {
     next(error);
   }

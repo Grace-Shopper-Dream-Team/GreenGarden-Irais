@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+import { updateQuantity } from "../store/singleOrder";
 
 class ChangeQuantity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 1,
+      quantity: this.props.itemInfo.qty,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +22,13 @@ class ChangeQuantity extends React.Component {
     event.preventDefault();
 
     this.props.updateQuantity({
+      id: this.props.itemInfo.id,
+      orderId: this.props.itemInfo.orderId,
       qty: this.state.quantity,
+    });
+
+    this.setState({
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -28,7 +36,7 @@ class ChangeQuantity extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="quantity">Item Quantity: </label>
+          <label htmlFor="quantity">Update Item Quantity: </label>
           <input
             name="quantity"
             onChange={this.handleChange}
@@ -44,4 +52,10 @@ class ChangeQuantity extends React.Component {
   }
 }
 
-export default ChangeQuantity;
+const mapDispatch = (dispatch) => {
+  return {
+    updateQuantity: (lineItem) => dispatch(updateQuantity(lineItem)),
+  };
+};
+
+export default connect(null, mapDispatch)(ChangeQuantity);
