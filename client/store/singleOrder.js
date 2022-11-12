@@ -28,14 +28,6 @@ export const _createSingleOrder = (order) => {
   };
 };
 
-// original version:
-// export const _createSingleOrder = (product) => {
-//   return {
-//     type: CREATE_SINGLE_ORDER,
-//     product,
-//   };
-// };
-
 // Get line items for an order:
 export const _getLineItems = (lineItems) => {
   return {
@@ -95,14 +87,6 @@ export const createSingleOrder = (product) => {
     dispatch(_createLineItem(newLineItem));
   };
 };
-
-// original version:
-// export const createSingleOrder = (product) => {
-//   return async (dispatch) => {
-//     const { data } = await axios.post(`/api/orders`, product);
-//     dispatch(_createSingleOrder(data));
-//   };
-// };
 
 // Get all line items for an order:
 export const getLineItems = (orderId) => {
@@ -178,29 +162,14 @@ export function lineItemsReducer(state = [], action) {
     case DELETE_LINE_ITEM:
       return state.filter((lineItem) => lineItem.id !== action.product.id);
     case UPDATE_ITEM_QUANTITY:
-      const items = state.filter(
-        (lineItem) => lineItem.id !== action.lineItem.id
-      );
-      return [...items, action.lineItem];
+      return state.map((item) => {
+        if (item.id === action.lineItem.id) {
+          return action.lineItem;
+        } else {
+          return item;
+        }
+      });
     default:
       return state;
   }
 }
-
-// original version:
-// const initialState = {
-//   userId: "",
-//   email: "",
-//   status: "",
-//   orderDate: "",
-// };
-// export default function singleOrderReducer(state = initialState, action) {
-//   switch (action.type) {
-//     case SET_SINGLE_ORDER:
-//       return action.order;
-//     case CREATE_SINGLE_ORDER:
-//       return action.product;
-//     default:
-//       return state;
-//   }
-// }

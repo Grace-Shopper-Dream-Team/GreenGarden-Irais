@@ -66,47 +66,8 @@ router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   }
 });
 
-// ADD ROUTE:
-// Adding items to cart.
-// TODO: Maybe break this up into 2 diff post routes, 1 to create a new order, another to create a new LineItem w/o a new orderID.
-
-// // CREATING AN ORDER ID
-// router.post("/", async (req, res, next) => {
-//   try {
-//     console.log("-------->", req.body);
-//     const potOrder = await Order.findByPk(req.body.orderId);
-
-//     // console.log("HERE IS YOUR POT ORDER", potOrder);
-
-//     if (potOrder === null) {
-//       const order = await Order.create();
-//       res.status(201).send(order);
-//     } else {
-//       console.error("no pot for you :( ");
-//     }
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
-// // CREATING AN ORDER & LINE ITEM (original version)
-// router.post("/", async (req, res, next) => {
-//   try {
-//     const order = await Order.create({ userId: 1 });
-//     const product = req.body;
-//     res.status(201).send(
-//       await LineItem.create({
-//         orderId: order.id,
-//         productId: product.id,
-//         price: product.price,
-//         quantity: 1,
-//       })
-//     );
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
+// POST api/orders
+// Create a new order:
 router.post("/", async (req, res, next) => {
   try {
     const order = await Order.create();
@@ -117,6 +78,8 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+// POST api/orders/:orderId/lineItems
+// Create a new line item
 router.post("/:orderId/lineItems", async (req, res, next) => {
   try {
     const lineItem = await LineItem.create({
@@ -125,7 +88,6 @@ router.post("/:orderId/lineItems", async (req, res, next) => {
       price: req.body.price,
       qty: 1,
     });
-
     res.send(lineItem);
   } catch (error) {
     next(error);
@@ -133,6 +95,7 @@ router.post("/:orderId/lineItems", async (req, res, next) => {
 });
 
 // PUT /api/orders/:orderId/lineItems/:lineItemId
+// Update a line item (update quantity):
 router.put("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   try {
     const item = await LineItem.findByPk(req.params.lineItemId);

@@ -5,9 +5,6 @@ import { createSingleOrder } from "../store/singleOrder";
 import { createLineItem } from "../store/singleOrder";
 
 class SingleProduct extends React.Component {
-  constructor() {
-    super();
-  }
   componentDidMount() {
     this.props.getSingleProduct(this.props.match.params.productId);
   }
@@ -26,10 +23,8 @@ class SingleProduct extends React.Component {
               type="button"
               onClick={() => {
                 if (this.props.currentOrder.length === 0) {
-                  console.log("no current order");
                   this.props.createSingleOrder(product);
                 } else {
-                  console.log("order in progress");
                   this.props.createLineItem(
                     product,
                     this.props.currentOrder.id
@@ -53,7 +48,7 @@ const mapState = (state) => {
   };
 };
 
-const mapDispatch = (dispatch, { history }) => {
+const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
     createSingleOrder: (product) => {
@@ -62,10 +57,6 @@ const mapDispatch = (dispatch, { history }) => {
     createLineItem: (product, orderId) => {
       dispatch(createLineItem(product, orderId));
     },
-    // original version:
-    // createSingleOrder: (product) => {
-    //   dispatch(createSingleOrder(product));
-    // },
   };
 };
 
