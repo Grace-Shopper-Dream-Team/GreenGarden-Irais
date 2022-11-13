@@ -33,7 +33,6 @@ router.get("/:orderId/lineItems", async (req, res, next) => {
       where: { orderId: req.params.orderId },
       include: Product,
     });
-    console.log(cartItems);
     res.send(cartItems);
   } catch (error) {
     next(error);
@@ -59,7 +58,6 @@ router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   try {
     const item = await LineItem.findByPk(req.params.lineItemId);
     item.destroy();
-    console.log("router.delete item deleted", item);
     res.send(item);
   } catch (error) {
     next(error);
@@ -82,12 +80,13 @@ router.post("/", async (req, res, next) => {
 // Create a new line item
 router.post("/:orderId/lineItems", async (req, res, next) => {
   try {
-    const lineItem = await LineItem.create({
+    let lineItem = await LineItem.create({
       orderId: req.params.orderId,
       productId: req.body.id,
       price: req.body.price,
       qty: 1,
     });
+    lineItem = await LineItem.findByPk(lineItem.id, { include: Product });
     res.send(lineItem);
   } catch (error) {
     next(error);
@@ -99,7 +98,8 @@ router.post("/:orderId/lineItems", async (req, res, next) => {
 router.put("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   try {
     const item = await LineItem.findByPk(req.params.lineItemId);
-    const updatedItem = await item.update(req.body);
+    let updatedItem = await item.update(req.body);
+    updatedItem = await LineItem.findByPk(updatedItem.id, { include: Product });
     res.send(updatedItem);
   } catch (error) {
     next(error);

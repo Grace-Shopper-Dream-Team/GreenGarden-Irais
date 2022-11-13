@@ -5,9 +5,9 @@ import { updateQuantity } from "../store/singleOrder";
 
 class SingleOrder extends React.Component {
   render() {
+    console.log("render props", this.props);
     const order = this.props.currentOrder;
     const lineItems = this.props.currentLineItems;
-    const products = this.props.products;
     return (
       <div>
         <h1> Shopping Cart</h1>
@@ -15,30 +15,28 @@ class SingleOrder extends React.Component {
         <p>Subtotal: </p>
         {order.id ? (
           lineItems.map((item) => (
-            // let currentProduct = products.filter((product) => {
-            //   item.productId === product.id
-            // })
             <div key={item.id}>
-              <h2>Product Id: {item.productId}</h2>
-              {/* <img
-                    src={currentProduct.imageUrl}
-                    className="cart-image"
-                  /> */}
+              {item.product ? (
+                <div>
+                  <h2>Item: {item.product.name}</h2>
+                  <img src={item.product.imageUrl} className="cart-image" />
+                </div>
+              ) : null}
               <p>Item Price: ${item.price}</p>
               <p>Item Quantity: {item.qty}</p>
               <button
                 type="button"
-                onClick={() => {
-                  this.props.deleteLineItem(item, order.id);
+                onClick={async () => {
+                  await this.props.deleteLineItem(item, order.id);
                 }}
               >
                 Delete
               </button>
               <button
                 type="button"
-                onClick={() => {
+                onClick={async () => {
                   let addOne = item.qty + 1;
-                  this.props.updateQuantity({
+                  await this.props.updateQuantity({
                     id: item.id,
                     orderId: item.orderId,
                     qty: addOne,
@@ -49,9 +47,9 @@ class SingleOrder extends React.Component {
               </button>
               <button
                 type="button"
-                onClick={() => {
+                onClick={async () => {
                   let minusOne = item.qty - 1;
-                  this.props.updateQuantity({
+                  await this.props.updateQuantity({
                     id: item.id,
                     orderId: item.orderId,
                     qty: minusOne,
