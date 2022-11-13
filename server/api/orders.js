@@ -31,7 +31,7 @@ router.get("/:orderId/lineItems", async (req, res, next) => {
   try {
     const cartItems = await LineItem.findAll({
       where: { orderId: req.params.orderId },
-      // include: Product,
+      include: Product,
     });
     console.log(cartItems);
     res.send(cartItems);

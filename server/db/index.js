@@ -14,6 +14,10 @@ const LineItem = require("./models/LineItem");
 // LineItem.belongsTo(Order);
 // Order.hasMany(LineItem);
 
+// Michelle added association between lineItems/products lineItems/orders here:
+Product.hasOne(LineItem, { foreignKey: "productId" });
+LineItem.belongsTo(Product);
+
 Address.belongsTo(User);
 User.hasOne(Address);
 
