@@ -22,7 +22,7 @@ class SingleOrder extends React.Component {
       <div>
         <h1> Shopping Cart</h1>
         <p>Order Number: {order.id}</p>
-        <p>Subtotal: {total}</p>
+        <p>Subtotal: ${total}</p>
         {order.id ? (
           lineItems.map((item) => (
             <div key={item.id}>
@@ -58,12 +58,18 @@ class SingleOrder extends React.Component {
               <button
                 type="button"
                 onClick={() => {
-                  let minusOne = item.qty - 1;
-                  this.props.updateQuantity({
-                    id: item.id,
-                    orderId: item.orderId,
-                    qty: minusOne,
-                  });
+                  if (item.qty === 1) {
+                    window.alert(
+                      "You cannot reduce the item quantity to less than one.  Please delete an item to remove it from your cart 💚."
+                    );
+                  } else {
+                    let minusOne = item.qty - 1;
+                    this.props.updateQuantity({
+                      id: item.id,
+                      orderId: item.orderId,
+                      qty: minusOne,
+                    });
+                  }
                 }}
               >
                 -
