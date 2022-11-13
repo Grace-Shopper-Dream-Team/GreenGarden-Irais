@@ -8,11 +8,21 @@ class SingleOrder extends React.Component {
   render() {
     const order = this.props.currentOrder;
     const lineItems = this.props.currentLineItems;
+
+    // Calculate cart subtotal
+    let total = 0;
+    for (let i = 0; i < lineItems.length; i++) {
+      let currentPrice = Number(lineItems[i].price);
+      let currentQty = lineItems[i].qty;
+      total += currentPrice * currentQty;
+    }
+    total = total.toFixed(2);
+
     return (
       <div>
         <h1> Shopping Cart</h1>
         <p>Order Number: {order.id}</p>
-        <p>Subtotal: </p>
+        <p>Subtotal: {total}</p>
         {order.id ? (
           lineItems.map((item) => (
             <div key={item.id}>
@@ -26,17 +36,17 @@ class SingleOrder extends React.Component {
               <p>Item Quantity: {item.qty}</p>
               <button
                 type="button"
-                onClick={async () => {
-                  await this.props.deleteLineItem(item, order.id);
+                onClick={() => {
+                  this.props.deleteLineItem(item, order.id);
                 }}
               >
                 Delete
               </button>
               <button
                 type="button"
-                onClick={async () => {
+                onClick={() => {
                   let addOne = item.qty + 1;
-                  await this.props.updateQuantity({
+                  this.props.updateQuantity({
                     id: item.id,
                     orderId: item.orderId,
                     qty: addOne,
@@ -47,9 +57,9 @@ class SingleOrder extends React.Component {
               </button>
               <button
                 type="button"
-                onClick={async () => {
+                onClick={() => {
                   let minusOne = item.qty - 1;
-                  await this.props.updateQuantity({
+                  this.props.updateQuantity({
                     id: item.id,
                     orderId: item.orderId,
                     qty: minusOne,
@@ -58,16 +68,18 @@ class SingleOrder extends React.Component {
               >
                 -
               </button>
-              <div>
-                <Link to={"/confirmation"}>
-                  <button>Purchase</button>
-                </Link>
-              </div>
             </div>
           ))
         ) : (
           <h2>Your Cart is Empty 🛒</h2>
         )}
+        {order.id ? (
+          <div>
+            <Link to={"/confirmation"}>
+              <button>Purchase</button>
+            </Link>
+          </div>
+        ) : null}
       </div>
     );
   }
