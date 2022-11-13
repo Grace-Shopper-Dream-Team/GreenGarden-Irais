@@ -1,11 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteLineItem } from "../store/singleOrder";
 import { updateQuantity } from "../store/singleOrder";
 
 class SingleOrder extends React.Component {
   render() {
-    console.log("render props", this.props);
     const order = this.props.currentOrder;
     const lineItems = this.props.currentLineItems;
     return (
@@ -58,6 +58,11 @@ class SingleOrder extends React.Component {
               >
                 -
               </button>
+              <div>
+                <Link to={"/confirmation"}>
+                  <button>Purchase</button>
+                </Link>
+              </div>
             </div>
           ))
         ) : (
