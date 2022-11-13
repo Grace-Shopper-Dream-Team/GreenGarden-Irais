@@ -69,7 +69,6 @@ router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const order = await Order.create();
-    console.log("post route order", order);
     res.status(201).send(order);
   } catch (error) {
     next(error);

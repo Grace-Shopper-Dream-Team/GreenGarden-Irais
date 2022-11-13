@@ -11,7 +11,6 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product;
-    console.log("render props", this.props);
     return (
       <div id="single-product" className="column">
         <div id="single-product-detail" className="row">
