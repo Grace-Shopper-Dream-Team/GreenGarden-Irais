@@ -6,13 +6,16 @@ import auth from "./auth";
 import singleProductReducer from "./singleProduct";
 import singleOrderReducer from "./singleOrder";
 import products from "./products";
+import loggedInUserOrdersReducer from "./loggedInUserOrders";
 
 const reducer = combineReducers({
   auth,
   singleProduct: singleProductReducer,
   singleOrder: singleOrderReducer,
   products,
+  loggedInUser: loggedInUserOrdersReducer,
 });
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

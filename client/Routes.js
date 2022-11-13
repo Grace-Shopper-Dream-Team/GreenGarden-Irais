@@ -8,6 +8,7 @@ import AllProducts from "./components/AllProducts";
 import SingleProduct from "./components/SingleProduct";
 import Confirmation from "./components/Confirmation";
 import SingleOrder from "./components/Cart";
+import LoggedInUserCart from "./components/LoggedInUserCart";
 
 /**
  * COMPONENT
@@ -25,6 +26,11 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="/confirmation" component={Confirmation} />
+            {/* added if user logged in go to logged in cart -irais  */}
+            <Route path="/cart/loggedIn" component={LoggedInUserCart} />
             <Redirect to="/home" />
           </Switch>
         ) : (

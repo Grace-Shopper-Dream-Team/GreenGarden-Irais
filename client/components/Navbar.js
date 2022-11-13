@@ -5,7 +5,11 @@ import { logout } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>Green Garden</h1>
+    <img
+      src="https://media.istockphoto.com/id/1045368942/vector/abstract-green-leaf-logo-icon-vector-design-ecology-icon-set-eco-icon.jpg?s=612x612&w=0&k=20&c=XIfHMI8r1G73blCpCBFmLIxCtOLx8qX0O3mZC9csRLs="
+      width="100px"
+    ></img>
+    <h1 className="pretty-font">Green Garden</h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -15,7 +19,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             Logout
           </a>
           <Link to="/products">All Products</Link>
-          <Link to="/cart">Cart</Link>
+          {/* changed this! -irais */}
+          <Link to="/cart/loggedIn">Cart</Link>
         </div>
       ) : (
         <div>
@@ -30,7 +35,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     <hr />
   </div>
 );
-
 
 /**
  * CONTAINER

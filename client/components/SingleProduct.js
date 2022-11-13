@@ -2,6 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { createSingleOrder } from "../store/singleOrder";
+import {
+  createLineItemForLoggedInUser,
+} from "../store/loggedInUserOrders";
 
 class SingleProduct extends React.Component {
   constructor() {
@@ -13,6 +16,7 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product;
+    const token = window.localStorage.getItem("token");
     return (
       <div id="single-product" className="column">
         <div id="single-product-detail" className="row">
@@ -21,9 +25,16 @@ class SingleProduct extends React.Component {
             <h1>{product.name}</h1>
             <p>Price: $ {product.price}</p>
             <p>Description: {product.desc}</p>
-            <button type="button" onClick={()=> {
-              this.props.createSingleOrder(product)
-            }}>Add to Cart</button>
+            <button
+              type="button"
+              onClick={() => {
+                token
+                  ? this.props.createLineItemForLoggedInUser(product)
+                  : this.props.createSingleOrder(product);
+              }}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
         <hr />
@@ -39,7 +50,9 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
-    createSingleOrder:(product) => dispatch(createSingleOrder(product))
+    createSingleOrder: (product) => dispatch(createSingleOrder(product)),
+    createLineItemForLoggedInUser: (product) =>
+      dispatch(createLineItemForLoggedInUser(product)),
   };
 };
 
