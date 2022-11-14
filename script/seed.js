@@ -187,7 +187,7 @@ async function seed() {
     LineItem.create({
       productId: 5,
       orderId: 1,
-      price: 12.99,
+      price: 23.87,
       qty: 1,
     }),
     LineItem.create({

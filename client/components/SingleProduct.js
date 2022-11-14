@@ -24,6 +24,12 @@ class SingleProduct extends React.Component {
               onClick={() => {
                 if (this.props.currentOrder.length === 0) {
                   this.props.createSingleOrder(product);
+                } else if (
+                  this.props.currentLineItemNames.includes(product.name)
+                ) {
+                  window.alert(
+                    "This item is already in your cart.  Please go to your cart to change the quantity 💚."
+                  );
                 } else {
                   this.props.createLineItem(
                     product,
@@ -45,6 +51,7 @@ const mapState = (state) => {
   return {
     product: state.singleProduct,
     currentOrder: state.singleOrder,
+    currentLineItemNames: state.lineItems.map((item) => item.product.name),
   };
 };
 
