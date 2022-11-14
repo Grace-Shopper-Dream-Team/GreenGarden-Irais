@@ -52,7 +52,7 @@ async function seed() {
       email: "jd@email.com",
     }),
     User.create({
-      username: "mary",
+      username: "Mary",
       password: "mary",
       firstName: "mary",
       lastName: "Doe",
