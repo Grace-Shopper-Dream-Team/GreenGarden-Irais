@@ -38,6 +38,14 @@ class LoggedInUserCart extends Component {
 
   render() {
     const userLineItems = this.props.userLineItems;
+    let total = 0;
+    userLineItems.forEach((userLineItem) => {
+      let currentItemPrice = Number(userLineItem.price);
+      let curItemQuantity = userLineItem.qty;
+      total += currentItemPrice * curItemQuantity;
+    });
+    total = total.toFixed(2);
+
     return (
       <div>
         <h1>Shopping Cart 🛒</h1>
@@ -45,20 +53,25 @@ class LoggedInUserCart extends Component {
           {userLineItems.map((userLineItem, idx) => {
             return (
               <div key={idx}>
-                <h3>
+                {/* added this to show item and image cause we are visual girlies */}
+                <h2>
+                  <strong className="black">Item name: </strong>
+                  {userLineItem.product.name} 🪴
+                </h2>
+                <img src={userLineItem.product.imageUrl} />
+                <p>
                   <strong className="black">Order Number:</strong>{" "}
                   {userLineItem.orderId}
-                </h3>
-                <p>
-                  <strong className="black">Product Id:</strong>{" "}
-                  {userLineItem.productId}
                 </p>
+                {/* deleted product id */}
                 <p>
-                  <strong className="black">Item Price: </strong> $
+                  {/* changed from item price to just price */}
+                  <strong className="black">Price: </strong> $
                   {userLineItem.price} USD
                 </p>
                 <p>
-                  <strong className="black">Item Quantity: </strong>{" "}
+                  {/* changed from item Quantity to Quantity */}
+                  <strong className="black">Quantity: </strong>{" "}
                   {userLineItem.qty}
                 </p>
                 <button
@@ -78,7 +91,13 @@ class LoggedInUserCart extends Component {
                 <button
                   type="button"
                   name={userLineItem.id}
-                  onClick={this.handleSubtract}
+                  onClick={(e) =>
+                    userLineItem.qty == 1
+                      ? window.alert(
+                          "You cannot reduce the item quantity to less than one.  Please delete an item to remove it from your cart 💚."
+                        )
+                      : this.handleSubtract(e)
+                  }
                 >
                   -
                 </button>
@@ -88,6 +107,10 @@ class LoggedInUserCart extends Component {
           })}
         </div>
         <br></br>
+        {/* added Subtotal here  */}
+        <p>
+          <strong className="black">Subtotal:</strong> ${total}
+        </p>
         <Link to="/confirmation">
           {" "}
           <button className="login">Purchase</button>

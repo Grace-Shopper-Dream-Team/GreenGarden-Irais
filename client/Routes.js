@@ -30,14 +30,15 @@ class Routes extends Component {
             <Route path="/products/:productId" component={SingleProduct} />
             <Route path="/confirmation" component={Confirmation} />
             {/* added if user logged in go to logged in cart -irais  */}
-            <Route path="/cart/loggedIn" component={LoggedInUserCart} />
+            {/* added exact here -irais */}
+            <Route exact path="/cart/loggedIn" component={LoggedInUserCart} />
             <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            <Route exact path="/signup" component={Signup} />
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/:productId" component={SingleProduct} />
             <Route path="/confirmation" component={Confirmation} />

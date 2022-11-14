@@ -1,10 +1,12 @@
 const router = require("express").Router();
 const {
   // I Also added User here!
-  models: { Order, LineItem, User },
+  // added product here - Irais
+  models: { Order, LineItem, User, Product },
 } = require("../db/index");
 
-//GET ROUTE: api/orders
+// const Product = require("../db/models/Product");
+
 router.get("/", async (req, res, next) => {
   try {
     const order = await Order.findAll(req.params.orderId);
@@ -68,7 +70,13 @@ router.post("/loggedIn", async (req, res, next) => {
         price: req.body.price,
       });
     }
-    res.status(201).send(newItemSameOrder);
+    //changing here
+    const newLineItemWithProductInfo = await LineItem.findOne({
+      where: { orderId: getUserExistingOrderId.id },
+      include: Product,
+    });
+    //sending new var I made on line 34
+    res.status(201).send(newLineItemWithProductInfo);
   } catch (error) {
     next(error);
   }
@@ -84,6 +92,8 @@ router.get("/loggedIn/:token", async (req, res, next) => {
     });
     const usersLineItems = await LineItem.findAll({
       where: { orderId: orderIdOfUser.id },
+      //Added here to include Product model
+      include: Product,
     });
     res.status(200).send(usersLineItems);
   } catch (error) {
@@ -112,7 +122,8 @@ router.put("/loggedIn/addTo/:lineItemId", async (req, res, next) => {
       qty: (itemToAddTo.qty += 1),
     });
     await itemToAddTo.save();
-    res.status(200).send(updatedItem);
+    const updateItemWithProductInfo = await LineItem.findByPk(updatedItem.id, { include: Product });
+    res.status(200).send(updateItemWithProductInfo);
   } catch (error) {
     next(error);
   }
@@ -126,7 +137,9 @@ router.put("/loggedIn/subtract/:lineItemId", async (req, res, next) => {
       qty: (itemToSubtractFrom.qty -= 1),
     });
     await itemToSubtractFrom.save();
-    res.status(200).send(updatedItem);
+    // added this to include product model -Irais 
+    const updateItemWithProductInfo = await LineItem.findByPk(updatedItem.id, { include: Product });
+    res.status(200).send(updateItemWithProductInfo);
   } catch (error) {
     next(error);
   }
