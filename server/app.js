@@ -4,9 +4,8 @@ const morgan = require("morgan");
 const app = express();
 module.exports = app;
 
-// development
 if (process.env.NODE_ENV !== "development") require("../secrets");
-// const SECRET = process.env.SECRET
+
 
 // logging middleware
 app.use(morgan("dev"));

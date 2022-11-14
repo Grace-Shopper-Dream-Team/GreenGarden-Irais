@@ -11,6 +11,10 @@ label {
   display: block;
 }
 
+nav {
+  font-family: var(--sans);
+}
+
 nav a {
   display: inline-block;
   margin: 1em;
@@ -49,6 +53,40 @@ img {
   max-width: 500px;
 }
 
+.login {
+    width: 250px;
+  background-color: #bf7aff; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+:root {
+  --sans: "Bree Serif", serif;
+}
+
+.pretty-font {
+  font-family: var(--sans)
+}
+
+.purple {
+  color: #bf7aff;
+}
+
+.nav-area-color {
+  color: rgb(174, 87, 0)
+}
+
+.black {
+  color: black
+}
+
 .inventory-table {
   max-height: 800px;
  
@@ -70,3 +108,4 @@ img {
 #inventory-form-admin input {
   margin-right:20px;
 }
+

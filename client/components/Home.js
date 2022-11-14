@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import AllProducts from "./AllProducts";
 
 /**
  * COMPONENT
@@ -14,7 +15,7 @@ export const Home = (props) => {
     </div>
   ) : (
     <div>
-      <h3>Welcome, {username}</h3>
+      <h1 className="purple pretty-font">Welcome back, {username}!</h1>
     </div>
   );
 };

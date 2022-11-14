@@ -21,7 +21,7 @@ async function seed() {
       password: "123",
       firstName: "Cody",
       lastName: "Martin",
-      email: "codym@email.com",
+      email: "codym@email.com"
     }),
     User.create({
       username: "jimmie",
@@ -257,7 +257,8 @@ async function seed() {
     Order.create({
       userId: 1,
       email: "codym@email.com",
-      status: "In Cart",
+      //changed status for testing but I think Nadia meant to say this was purchased
+      status: "Purchased",
       orderDate: "11/1/22",
     }),
     Order.create({
