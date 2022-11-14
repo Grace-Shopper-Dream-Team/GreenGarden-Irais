@@ -1,4 +1,3 @@
-
 "use strict";
 
 const {
@@ -51,6 +50,14 @@ async function seed() {
       firstName: "John",
       lastName: "Doe",
       email: "jd@email.com",
+    }),
+    User.create({
+      username: "Mary",
+      password: "mary",
+      firstName: "mary",
+      lastName: "Doe",
+      email: "mary@email.com",
+      isAdmin: true,
     }),
   ]);
 
