@@ -49,29 +49,32 @@ class LoggedInUserCart extends Component {
     return (
       <div>
         <h1>Shopping Cart 🛒</h1>
+        <p>
+          <strong className="black">Order Number:</strong>{" "}
+          {userLineItems.orderId}
+        </p>
+        <p>
+          <strong className="black">Subtotal:</strong> ${total}
+        </p>
         <div>
           {userLineItems.map((userLineItem, idx) => {
             return (
               <div key={idx}>
-                {/* added this to show item and image cause we are visual girlies */}
                 <h2>
                   <strong className="black">Item name: </strong>
                   {userLineItem.product.name} 🪴
                 </h2>
-                <img src={userLineItem.product.imageUrl} />
+                <img
+                  src={userLineItem.product.imageUrl}
+                  className="cart-image"
+                />
                 <p>
-                  <strong className="black">Order Number:</strong>{" "}
-                  {userLineItem.orderId}
-                </p>
-                {/* deleted product id */}
-                <p>
-                  {/* changed from item price to just price */}
-                  <strong className="black">Price: </strong> $
-                  {userLineItem.price} USD
+                  <strong className="black">Item Price: </strong> $
+                  {userLineItem.price}
                 </p>
                 <p>
                   {/* changed from item Quantity to Quantity */}
-                  <strong className="black">Quantity: </strong>{" "}
+                  <strong className="black">Item Quantity: </strong>{" "}
                   {userLineItem.qty}
                 </p>
                 <button
@@ -107,10 +110,6 @@ class LoggedInUserCart extends Component {
           })}
         </div>
         <br></br>
-        {/* added Subtotal here  */}
-        <p>
-          <strong className="black">Subtotal:</strong> ${total}
-        </p>
         <Link to="/confirmation">
           {" "}
           <button className="login">Purchase</button>

@@ -21,19 +21,37 @@ class SingleOrder extends React.Component {
     return (
       <div>
         <h1> Shopping Cart</h1>
-        <p>Order Number: {order.id}</p>
-        <p>Subtotal: ${total}</p>
+        {order.id ? (
+          <div>
+            <p>
+              <strong className="black">Order Number: </strong>
+              {order.id}
+            </p>
+            <p>
+              <strong className="black">Subtotal: $ </strong>
+              {total}
+            </p>
+          </div>
+        ) : null}
         {order.id ? (
           lineItems.map((item) => (
             <div key={item.id}>
               {item.product ? (
                 <div>
-                  <h2>Item: {item.product.name}</h2>
+                  <h2>
+                    <strong className="black">Item name:</strong>{" "}
+                    {item.product.name}
+                  </h2>
                   <img src={item.product.imageUrl} className="cart-image" />
                 </div>
               ) : null}
-              <p>Item Price: ${item.price}</p>
-              <p>Item Quantity: {item.qty}</p>
+              <p>
+                <strong className="black">Item Price: $ </strong>
+                {item.price}
+              </p>
+              <p>
+                <strong className="black">Item Quantity: </strong> {item.qty}
+              </p>
               <button
                 type="button"
                 onClick={() => {
@@ -82,7 +100,7 @@ class SingleOrder extends React.Component {
         {order.id ? (
           <div>
             <Link to={"/confirmation"}>
-              <button>Purchase</button>
+              <button className="login">Purchase</button>
             </Link>
           </div>
         ) : null}

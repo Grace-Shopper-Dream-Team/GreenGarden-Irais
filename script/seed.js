@@ -257,7 +257,6 @@ async function seed() {
     Order.create({
       userId: 1,
       email: "codym@email.com",
-      //changed status for testing but I think Nadia meant to say this was purchased
       status: "Purchased",
       orderDate: "11/1/22",
     }),
