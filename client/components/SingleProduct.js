@@ -2,11 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { createSingleOrder } from "../store/singleOrder";
+import { createLineItem } from "../store/singleOrder";
 
 class SingleProduct extends React.Component {
-  constructor() {
-    super();
-  }
   componentDidMount() {
     this.props.getSingleProduct(this.props.match.params.productId);
   }
@@ -21,9 +19,21 @@ class SingleProduct extends React.Component {
             <h1>{product.name}</h1>
             <p>Price: $ {product.price}</p>
             <p>Description: {product.desc}</p>
-            <button type="button" onClick={()=> {
-              this.props.createSingleOrder(product)
-            }}>Add to Cart</button>
+            <button
+              type="button"
+              onClick={() => {
+                if (this.props.currentOrder.length === 0) {
+                  this.props.createSingleOrder(product);
+                } else {
+                  this.props.createLineItem(
+                    product,
+                    this.props.currentOrder.id
+                  );
+                }
+              }}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
         <hr />
@@ -34,12 +44,19 @@ class SingleProduct extends React.Component {
 const mapState = (state) => {
   return {
     product: state.singleProduct,
+    currentOrder: state.singleOrder,
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
-    createSingleOrder:(product) => dispatch(createSingleOrder(product))
+    createSingleOrder: (product) => {
+      dispatch(createSingleOrder(product));
+    },
+    createLineItem: (product, orderId) => {
+      dispatch(createLineItem(product, orderId));
+    },
   };
 };
 
