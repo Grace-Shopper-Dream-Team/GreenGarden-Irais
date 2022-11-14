@@ -3,35 +3,50 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div>
-    <img
-      src="https://media.istockphoto.com/id/1045368942/vector/abstract-green-leaf-logo-icon-vector-design-ecology-icon-set-eco-icon.jpg?s=612x612&w=0&k=20&c=XIfHMI8r1G73blCpCBFmLIxCtOLx8qX0O3mZC9csRLs="
-      width="100px"
-    ></img>
-    <h1 className="pretty-font">Green Garden</h1>
-    <nav>
-      {isLoggedIn ? (
+const renderNav = (handleClick, isLoggedIn, isAdmin) => {
+  if (isLoggedIn) {
+    if (isAdmin) {
+      return (
         <div>
-          {/* The navbar will show these links after you log in */}
+          <Link to="/home">Home</Link>
+          <a href="#" onClick={handleClick}>
+            Logout
+          </a>
+          <Link to="/users">All Users</Link>
+          <Link to="/inventory">Inventory</Link>
+        </div>
+      );
+    } else {
+      return (
+        <div>
           <Link to="/home">Home</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
           <Link to="/products">All Products</Link>
-          {/* changed this! -irais */}
           <Link to="/cart/loggedIn">Cart</Link>
         </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/products">All Products</Link>
-          <Link to="/cart">Cart</Link>
-        </div>
-      )}
-    </nav>
+      );
+    }
+  }
+  return (
+    <div>
+      <Link to="/login">Login</Link>
+      <Link to="/signup">Sign Up</Link>
+      <Link to="/products">All Products</Link>
+      <Link to="/cart">Cart</Link>
+    </div>
+  );
+};
+
+const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
+  <div>
+     <img
+      src="https://media.istockphoto.com/id/1045368942/vector/abstract-green-leaf-logo-icon-vector-design-ecology-icon-set-eco-icon.jpg?s=612x612&w=0&k=20&c=XIfHMI8r1G73blCpCBFmLIxCtOLx8qX0O3mZC9csRLs="
+      width="100px"
+    ></img>
+    <h1 className="pretty-font">Green Garden</h1>
+    <nav>{renderNav(handleClick, isLoggedIn, isAdmin)}</nav>
     <hr />
   </div>
 );
@@ -42,6 +57,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
+    isAdmin: state.auth.isAdmin,
   };
 };
 

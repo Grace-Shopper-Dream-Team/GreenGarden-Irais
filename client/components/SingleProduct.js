@@ -3,11 +3,9 @@ import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { createSingleOrder } from "../store/singleOrder";
 import { createLineItemForLoggedInUser } from "../store/loggedInUserOrders";
+import { createLineItem } from "../store/singleOrder";
 
 class SingleProduct extends React.Component {
-  constructor() {
-    super();
-  }
   componentDidMount() {
     this.props.getSingleProduct(this.props.match.params.productId);
   }
@@ -29,7 +27,6 @@ class SingleProduct extends React.Component {
               type="button"
               onClick={() => {
                 if (token) {
-                  // added here check for duplicating cart -irais
                   if (userLineItems.includes(product.name)) {
                     window.alert(
                       "This item is already in your cart. Please go to your cart to change the quantity 💚."
@@ -38,7 +35,21 @@ class SingleProduct extends React.Component {
                     this.props.createLineItemForLoggedInUser(product);
                   }
                 } else {
-                  this.props.createSingleOrder(product);
+                  // test this later!
+                  if (this.props.currentOrder.length === 0) {
+                    this.props.createSingleOrder(product);
+                  } else if (
+                    this.props.currentLineItemNames.includes(product.name)
+                  ) {
+                    window.alert(
+                      "This item is already in your cart.  Please go to your cart to change the quantity 💚."
+                    );
+                  } else {
+                    this.props.createLineItem(
+                      product,
+                      this.props.currentOrder.id
+                    );
+                  }
                 }
               }}
             >
@@ -54,16 +65,23 @@ class SingleProduct extends React.Component {
 const mapState = (state) => {
   return {
     product: state.singleProduct,
-    //added this need line items here -irais
     userLineItems: state.loggedInUser.map((item) => item.product.name),
+    currentOrder: state.singleOrder,
+    currentLineItemNames: state.lineItems.map((item) => item.product.name),
   };
 };
+
 const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
-    createSingleOrder: (product) => dispatch(createSingleOrder(product)),
     createLineItemForLoggedInUser: (product) =>
       dispatch(createLineItemForLoggedInUser(product)),
+    createSingleOrder: (product) => {
+      dispatch(createSingleOrder(product));
+    },
+    createLineItem: (product, orderId) => {
+      dispatch(createLineItem(product, orderId));
+    },
   };
 };
 

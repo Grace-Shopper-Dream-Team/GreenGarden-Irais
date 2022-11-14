@@ -1,36 +1,44 @@
 const router = require("express").Router();
 const {
-  // I Also added User here!
-  // added product here - Irais
   models: { Order, LineItem, User, Product },
 } = require("../db/index");
 
-// const Product = require("../db/models/Product");
-
 router.get("/", async (req, res, next) => {
   try {
-    const order = await Order.findAll(req.params.orderId);
+    const order = await Order.findAll();
     res.json(order);
   } catch (error) {
     next(error);
   }
 });
 
-//GET ROUTE: api/orders/:orderId/lineItems
-//TODO: fix this route
+// GET ROUTE:  api/orders/:orderId
+// Get information for a specific order
+router.get("/:orderId", async (req, res, next) => {
+  try {
+    const order = await Order.findByPk(req.params.orderId);
+    res.json(order);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET ROUTE: api/orders/:orderId/lineItems
+// Get all line items for a specific order
 router.get("/:orderId/lineItems", async (req, res, next) => {
   try {
     const cartItems = await LineItem.findAll({
-      where: { id: req.params.orderId },
+      where: { orderId: req.params.orderId },
+      include: Product,
     });
-    console.log(cartItems);
     res.send(cartItems);
   } catch (error) {
     next(error);
   }
 });
 
-//GET ROUTE: api/orders/:orderId/lineItems/:lineItemId
+// GET ROUTE: api/orders/:orderId/lineItems/:lineItemId
+// Getting a specific item from that users cart OR a specific item from one of their orders
 router.get("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   try {
     const item = await LineItem.findAll({
@@ -46,16 +54,42 @@ router.get("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
 //This route deletes 1 item from a cart
 router.delete("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
   try {
-    const item = await LineItem.destroy({
-      where: { id: req.params.lineItemId },
-    });
-    res.status(204).send(item);
+    const item = await LineItem.findByPk(req.params.lineItemId);
+    item.destroy();
+    res.send(item);
   } catch (error) {
     next(error);
   }
 });
 
-/// Irais
+// POST api/orders
+// Create a new order:
+router.post("/", async (req, res, next) => {
+  try {
+    const order = await Order.create();
+    res.status(201).send(order);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// POST api/orders/:orderId/lineItems
+// Create a new line item
+router.post("/:orderId/lineItems", async (req, res, next) => {
+  try {
+    let lineItem = await LineItem.create({
+      orderId: req.params.orderId,
+      productId: req.body.id,
+      price: req.body.price,
+      qty: 1,
+    });
+    lineItem = await LineItem.findByPk(lineItem.id, { include: Product });
+    res.send(lineItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post("/loggedIn", async (req, res, next) => {
   try {
     const loggedInUser = await User.findByToken(req.body.token);
@@ -70,12 +104,10 @@ router.post("/loggedIn", async (req, res, next) => {
         price: req.body.price,
       });
     }
-    //changing here
     const newLineItemWithProductInfo = await LineItem.findOne({
       where: { orderId: getUserExistingOrderId.id },
       include: Product,
     });
-    //sending new var I made on line 34
     res.status(201).send(newLineItemWithProductInfo);
   } catch (error) {
     next(error);
@@ -92,7 +124,6 @@ router.get("/loggedIn/:token", async (req, res, next) => {
     });
     const usersLineItems = await LineItem.findAll({
       where: { orderId: orderIdOfUser.id },
-      //Added here to include Product model
       include: Product,
     });
     res.status(200).send(usersLineItems);
@@ -114,6 +145,19 @@ router.delete("/loggedIn/:lineItemId", async (req, res, next) => {
   }
 });
 
+// PUT /api/orders/:orderId/lineItems/:lineItemId
+// Update a line item (update quantity):
+router.put("/:orderId/lineItems/:lineItemId", async (req, res, next) => {
+  try {
+    const item = await LineItem.findByPk(req.params.lineItemId);
+    let updatedItem = await item.update(req.body);
+    updatedItem = await LineItem.findByPk(updatedItem.id, { include: Product });
+    res.send(updatedItem);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.put("/loggedIn/addTo/:lineItemId", async (req, res, next) => {
   try {
     const { lineItemId } = req.params;
@@ -122,7 +166,9 @@ router.put("/loggedIn/addTo/:lineItemId", async (req, res, next) => {
       qty: (itemToAddTo.qty += 1),
     });
     await itemToAddTo.save();
-    const updateItemWithProductInfo = await LineItem.findByPk(updatedItem.id, { include: Product });
+    const updateItemWithProductInfo = await LineItem.findByPk(updatedItem.id, {
+      include: Product,
+    });
     res.status(200).send(updateItemWithProductInfo);
   } catch (error) {
     next(error);
@@ -137,13 +183,13 @@ router.put("/loggedIn/subtract/:lineItemId", async (req, res, next) => {
       qty: (itemToSubtractFrom.qty -= 1),
     });
     await itemToSubtractFrom.save();
-    // added this to include product model -Irais 
-    const updateItemWithProductInfo = await LineItem.findByPk(updatedItem.id, { include: Product });
+    const updateItemWithProductInfo = await LineItem.findByPk(updatedItem.id, {
+      include: Product,
+    });
     res.status(200).send(updateItemWithProductInfo);
   } catch (error) {
     next(error);
   }
 });
-
 
 module.exports = router;

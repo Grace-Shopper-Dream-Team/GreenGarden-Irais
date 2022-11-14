@@ -29,6 +29,11 @@ img {
   border-radius: 12px;
 }
 
+.cart-image {
+  width: 100px;
+  height: 100px;
+}
+
 .all-products-view {
   display: flex;
   flex-wrap: wrap;
@@ -81,3 +86,26 @@ img {
 .black {
   color: black
 }
+
+.inventory-table {
+  max-height: 800px;
+ 
+}
+
+.inventory-admin-access.MuiTable-root {
+   width:80%;
+   margin: 0 auto
+}
+#inventory-form-admin {
+  margin-top:20px;
+  margin-bottom: 20px
+}
+
+#inventory-form-admin label{
+  display:inline;
+  margin-right:10px;
+}
+#inventory-form-admin input {
+  margin-right:20px;
+}
+

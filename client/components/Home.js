@@ -7,9 +7,13 @@ import AllProducts from "./AllProducts";
  */
 
 export const Home = (props) => {
-  const { username } = props;
+  const { username, isAdmin } = props;
 
-  return (
+  return isAdmin ? (
+    <div>
+      <h3>Welcome, Admin {username}</h3>
+    </div>
+  ) : (
     <div>
       <h1 className="purple pretty-font">Welcome back, {username}!</h1>
     </div>
@@ -22,6 +26,7 @@ export const Home = (props) => {
 const mapState = (state) => {
   return {
     username: state.auth.username,
+    isAdmin: state.auth.isAdmin,
   };
 };
 
