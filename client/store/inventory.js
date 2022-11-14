@@ -2,6 +2,7 @@ import axios from "axios";
 
 const GET_INVENTORY = "GET_INVENTORY";
 const CREATE_INVENTORY = "CREATE_INVENTORY";
+const DELETE_INVENTORY = "DELETE_INVENTORY";
 
 export const _getInventory = (inventory) => {
   return {
@@ -13,6 +14,13 @@ export const _getInventory = (inventory) => {
 export const _createInventory = (inventory) => {
   return {
     type: CREATE_INVENTORY,
+    inventory,
+  };
+};
+
+const _deleteInventory = (inventory) => {
+  return {
+    type: DELETE_INVENTORY,
     inventory,
   };
 };
@@ -36,6 +44,13 @@ export const createInventory = (inventory) => {
   };
 };
 
+export const deleteInventory = (id) => {
+  return async (dispatch) => {
+    const { data: inventory } = await axios.delete(`/api/products/${id}`);
+    dispatch(_deleteInventory(inventory));
+  };
+};
+
 const initialState = [];
 
 export default function inventoryReducer(state = initialState, action) {
@@ -44,6 +59,8 @@ export default function inventoryReducer(state = initialState, action) {
       return action.inventory;
     case CREATE_INVENTORY:
       return [...state, action.inventory];
+    case DELETE_INVENTORY:
+      return state.filter((product) => product.id !== action.inventory.id);
     default:
       return state;
   }

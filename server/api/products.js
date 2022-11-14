@@ -29,4 +29,14 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.delete("/:productId", async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.productId);
+    await product.destroy();
+    res.send(product);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
