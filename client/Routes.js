@@ -9,6 +9,7 @@ import SingleProduct from "./components/SingleProduct";
 import Confirmation from "./components/Confirmation";
 import SingleOrder from "./components/Cart";
 import AllUsers from "./components/AllUsersView";
+import Inventory from "./components/Inventory";
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/users" component={AllUsers} />
+            <Route path="/inventory" component={Inventory} />
             <Redirect to="/home" />
           </Switch>
         ) : (

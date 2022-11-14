@@ -1,9 +1,8 @@
-
 "use strict";
 
 const {
   db,
-  models: { User, Address, Product, LineItem, Order }
+  models: { User, Address, Product, LineItem, Order },
 } = require("../server/db");
 
 /**
@@ -51,6 +50,14 @@ async function seed() {
       firstName: "John",
       lastName: "Doe",
       email: "jd@email.com",
+    }),
+    User.create({
+      username: "mary",
+      password: "mary",
+      firstName: "mary",
+      lastName: "Doe",
+      email: "mary@email.com",
+      isAdmin: true,
     }),
   ]);
 
@@ -173,7 +180,6 @@ async function seed() {
       desc: `Not to throw shade at other succulents, but the string of pearls (Senecio rowleyanus) succulent is a show-stopper. With its overflowing vines and bubbly pearl-like leaves, it’s an eye catcher that looks beautiful trailing across a desk or bookshelf or even hanging in a sunny window, where the vines can trail down for interest. Although these plants look delicate, they’re part of the succulent family—a generally easy-to-care-for group of plants. This one in particular is a sure winner for a special space by your window. Read on for tips for growing and caring for this special plant.`,
     }),
   ]);
-
 
   console.log(`seeded ${products.length} products`);
   // Creating Line Items (Products in cart & purchased, organized by user)

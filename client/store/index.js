@@ -7,6 +7,7 @@ import singleProductReducer from "./singleProduct";
 import singleOrderReducer from "./singleOrder";
 import products from "./products";
 import usersReducer from "./allUsersView";
+import inventoryReducer from "./inventory";
 
 const reducer = combineReducers({
   auth,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   singleOrder: singleOrderReducer,
   products,
   users: usersReducer,
+  inventory: inventoryReducer,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
