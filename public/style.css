@@ -41,6 +41,11 @@ body {
 
 a {
   text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  color: #547b49 !important;
 }
 
 label {
