@@ -1,7 +1,5 @@
 import axios from "axios";
 
-//TODO: Pair program this with someone. Not sure if I did it right.
-
 // Action Types
 const GET_CURRENT_ORDER = "GET_CURRENT_ORDER";
 const DELETE_LINE_ITEM = "DELETE_LINE_ITEM";
@@ -28,7 +26,6 @@ export default (currentOrder = {}, action) => {
 };
 
 // Thunks
-//~~~~> Need to use the Order Id here?
 export const getCurrentOrder = (id) => (dispatch) => {
   return async (dispatch) => {
     const { data: orders } = await axios.get("/api/orders/:orderId");
@@ -43,13 +40,3 @@ export const deleteLineItem = (id) => (dispatch) => {
     history.push("/");
   };
 };
-
-//OTHER PROJECT REFERENCE FOR GETCURRENTORDER:
-
-/*
-export const fetchCurrentOrder = id => dispatch => {
-    axios.get(`/api/orders/${id}`)
-    .then(order => dispatch(getCurrentOrder(order.data)))
-    .catch(err => console.error(`error fetching product id: ${id}`, err))
-}
-*/

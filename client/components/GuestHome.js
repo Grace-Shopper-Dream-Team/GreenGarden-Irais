@@ -61,7 +61,6 @@ class GuestHome extends React.Component {
  */
 const mapState = (state) => {
   return {
-    // username: state.auth.username,
     products: state.products,
   };
 };

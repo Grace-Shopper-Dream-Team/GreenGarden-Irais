@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getFeaturedProduct } from "../store/products";
 import { Link } from "react-router-dom";
 
+//ENDED UP NOT USING THIS PAGE AT ALL
 class FeaturedProduct extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,6 @@ class FeaturedProduct extends React.Component {
 
   render() {
     const ftProduct = this.props.products;
-    // console.log("PRODUCTS", this.props);
     const products = this.props;
     console.log("------->", products);
 
@@ -61,15 +61,3 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(FeaturedProduct);
-
-{
-  /* <h1>Check out all of our amazing plants! 🪴</h1>
-        <div key={product.id} className="all-products-tile">
-          <h3>{product.name}</h3>
-          <img src={product.imageUrl} className="all-products-thumbnails" />
-          <p>{product.price}</p>
-          <Link to={`/products/${product.id}`}>
-            <button type="button">View Plant</button>
-          </Link>
-        </div> */
-}
