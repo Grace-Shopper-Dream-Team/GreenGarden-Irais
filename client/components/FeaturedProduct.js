@@ -3,15 +3,21 @@ import { connect } from "react-redux";
 import { getFeaturedProduct } from "../store/products";
 import { Link } from "react-router-dom";
 
-//~~~~> COULDN'T QUITE GET THIS TO WORK. DECIDED TO HARD CODE IT INTO HOME PAGES INSTEAD.
 class FeaturedProduct extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentDidMount() {
-    this.props.getFeaturedProduct();
+    this.props.getProducts();
   }
 
   render() {
     const ftProduct = this.props.products;
     // console.log("PRODUCTS", this.props);
+    const products = this.props;
+    console.log("------->", products);
 
     return (
       <div>
@@ -36,15 +42,19 @@ class FeaturedProduct extends React.Component {
   }
 }
 
+/**
+ * CONTAINER
+ */
 const mapState = (state) => {
   return {
-    getFeaturedProduct: state.getFeaturedProduct,
+    // username: state.auth.username,
+    products: state.products,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    getFeaturedProduct: () => dispatch(getFeaturedProduct()),
+    getProducts: () => dispatch(getProducts()),
   };
 };
 

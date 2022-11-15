@@ -24,7 +24,6 @@ class GuestHome extends React.Component {
 
     return (
       <div>
-        <h1> Welcome to our store!</h1>
         <div>
           <Carousel />
           <Link to="/products" className="all-products">

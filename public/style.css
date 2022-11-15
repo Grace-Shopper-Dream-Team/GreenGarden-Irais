@@ -31,8 +31,12 @@ body {
 }
 /* END LAYOUT */
 
-/* SLIDER SECTION */
-.slider_section div#carouselExampleControls {
+/* CAROUSEL SECTION */
+.carousel-item-active {
+  background: url(./assets/HomeCoverPic2.png);
+}
+
+/* .slider_section div#carouselExampleControls {
   overflow: hidden;
 }
 
@@ -70,9 +74,9 @@ body {
   background-image: url(./assets/HomeCoverPic2.png);
   right: -45px;
   background-position: 20px center;
-}
+} */
 
-/* END SLIDER SECTION */
+/* END CAROUSEL SECTION */
 
 a {
   text-decoration: none;
@@ -119,17 +123,3 @@ img {
 .confirmation-image {
   max-width: 500px;
 }
-
-/* .home-cover-pic {
-  background: url("./assets/HomeCoverPic2.png");
-  background-repeat: "no-repeat";
-  background-size: "contain";
-  height: 600;
-  width: 600;
-  /* position: relative; */
-/* overflow: hidden; */
-/* max-height: inherit; 
-   background-color: transparent; 
-} */
-
-/* Home Page - Cover w/Text & Button */
