@@ -20,6 +20,9 @@ app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "..", "public/index.html"))
 );
 
+// Health check
+app.get("/healthy", (req, res) => res.sendStatus(200));
+
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
 
