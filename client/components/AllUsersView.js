@@ -16,42 +16,47 @@ class AllUsers extends React.Component {
 
   render() {
     const users = this.props.users;
-    console.log(users);
+    const isAdmin = this.props.isAdmin;
+
     return (
-      <>
-        <h1>🪴 Users Table 🪴</h1>
-        <TableContainer component={Paper} className="inventory-table">
-          <Table
-            stickyHeader
-            aria-label="sticky table"
-            className="inventory-admin-access"
-          >
-            <TableHead>
-              <TableRow>
-                <TableCell>Username </TableCell>
-                <TableCell>First Name</TableCell>
-                <TableCell>Last Name</TableCell>
-                <TableCell>Email</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {users.map((user) => (
-                <TableRow
-                  key={user.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {user.username}
-                  </TableCell>
-                  <TableCell>{user.firstName}</TableCell>
-                  <TableCell>{user.lastName}</TableCell>
-                  <TableCell>{user.email}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </>
+      <div>
+        {isAdmin ? (
+          <>
+            <h1>🪴 Users Table 🪴</h1>
+            <TableContainer component={Paper} className="inventory-table">
+              <Table
+                stickyHeader
+                aria-label="sticky table"
+                className="inventory-admin-access"
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Username </TableCell>
+                    <TableCell>First Name</TableCell>
+                    <TableCell>Last Name</TableCell>
+                    <TableCell>Email</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {users.map((user) => (
+                    <TableRow
+                      key={user.id}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {user.username}
+                      </TableCell>
+                      <TableCell>{user.firstName}</TableCell>
+                      <TableCell>{user.lastName}</TableCell>
+                      <TableCell>{user.email}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </>
+        ) : null}
+      </div>
     );
   }
 }
@@ -59,6 +64,7 @@ class AllUsers extends React.Component {
 const mapState = (state) => {
   return {
     users: state.users,
+    isAdmin: state.auth.isAdmin,
   };
 };
 
