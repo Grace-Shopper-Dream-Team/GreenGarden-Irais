@@ -9,6 +9,7 @@ export const MemberHome = (props) => {
   return isAdmin ? (
     <div>
       <h3>Welcome, Admin {username}</h3>
+      <GuestHome />
     </div>
   ) : (
     <div>
