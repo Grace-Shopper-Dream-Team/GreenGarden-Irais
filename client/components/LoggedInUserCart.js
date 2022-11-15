@@ -38,6 +38,7 @@ class LoggedInUserCart extends Component {
 
   render() {
     const userLineItems = this.props.userLineItems;
+    // console.log("line items ", userLineItems[0])
     let total = 0;
     userLineItems.forEach((userLineItem) => {
       let currentItemPrice = Number(userLineItem.price);
@@ -50,7 +51,7 @@ class LoggedInUserCart extends Component {
       <div className="entire-cart">
         <h3>🛒 Shopping Cart 🛒</h3>
         <p>
-          <strong className="black">Order Number:</strong>{" "}
+          <strong className="black">Order Number:</strong> 
           {userLineItems.orderId}
         </p>
         <p>
@@ -73,7 +74,6 @@ class LoggedInUserCart extends Component {
                   {userLineItem.price}
                 </p>
                 <p>
-                  {/* changed from item Quantity to Quantity */}
                   <strong className="black">Item Quantity: </strong>{" "}
                   {userLineItem.qty}
                 </p>
@@ -139,7 +139,6 @@ const mapDispatch = (dispatch) => {
     deleteLineItemForLoggedInUser: (lineItemId) => {
       dispatch(deleteLineItemForLoggedInUser(lineItemId));
     },
-    //making thunk for adding
     addLineItemForLoggedInUser: (lineItemId) => {
       dispatch(addLineItemForLoggedInUser(lineItemId));
     },
