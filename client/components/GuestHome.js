@@ -22,16 +22,16 @@ class GuestHome extends React.Component {
     return (
       <div>
         <Carousel />
-        <div className="container">
+        <div className="container-sm">
           <div className="row">
-            <Link to="/products" className="all-products">
+            <Link to="/products">
               <button type="button" className="btn btn-primary">
                 Shop All Plants
               </button>
             </Link>
           </div>
         </div>
-        <div className="container">
+        <div className="trending-container">
           <h3>What's Trending</h3>
           <div className="trending-view">
             {slicedProducts.map((product) => (

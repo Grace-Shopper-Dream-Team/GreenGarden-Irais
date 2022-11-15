@@ -18,7 +18,6 @@ class Routes extends Component {
     this.props.loadInitialData();
   }
 
-  // TODO: ALLOW LOGGED IN USERS TO SEE PRODUCT PAGES ETC.
   render() {
     const { isLoggedIn } = this.props;
 
