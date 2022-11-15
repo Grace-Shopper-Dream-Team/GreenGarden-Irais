@@ -17,7 +17,6 @@ class FeaturedProduct extends React.Component {
   render() {
     const ftProduct = this.props.products;
     const products = this.props;
-    console.log("------->", products);
 
     return (
       <div>
