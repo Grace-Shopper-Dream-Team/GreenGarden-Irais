@@ -5,10 +5,12 @@ body {
   text-align: center;
   color: #000000;
   background-color: #ffffff;
+  /* margin-top: 20px; */
 }
 
 .logo {
   padding: 20px;
+  color: black;
 }
 
 .col {
