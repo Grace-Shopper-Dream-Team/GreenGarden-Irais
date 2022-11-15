@@ -74,6 +74,7 @@ img {
 .all-products-view {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .all-products-thumbnails {

@@ -32,7 +32,9 @@ class FeaturedProduct extends React.Component {
               />
               <p>{ftProduct.price}</p>
               <Link to={`/products/${ftProduct.id}`}>
-                <button type="button">View Plant</button>
+                <button className="btn btn-primary" type="button">
+                  View Plant
+                </button>
               </Link>
             </div>
           }

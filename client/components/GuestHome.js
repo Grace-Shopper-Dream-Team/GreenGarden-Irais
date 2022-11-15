@@ -16,7 +16,7 @@ class GuestHome extends React.Component {
     this.props.getProducts();
   }
   render() {
-    const products = this.props;
+    const products = this.props.products;
     // console.log("------->", products);
 
     // const image = "../../public/assets/HomeCoverPic2.png";
@@ -25,7 +25,7 @@ class GuestHome extends React.Component {
     return (
       <div>
         <Carousel />
-        <div class="container">
+        <div className="container">
           <div className="row">
             <Link to="/products" className="all-products">
               <button type="button" className="btn btn-primary">
@@ -35,12 +35,23 @@ class GuestHome extends React.Component {
           </div>
         </div>
         <div className="container text-center">
-          <div className="row">
-            <h3>Featured Product</h3>
-            <div className="row">
-              <div className="col">1 of 2</div>
-              <div className="col">2 of 2</div>
-            </div>
+          <h3>What's Trending</h3>
+          <div className="all-products-view">
+            {products.map((product) => (
+              <div key={product.id} className="all-products-tile">
+                <h3>{product.name}</h3>
+                <img
+                  src={product.imageUrl}
+                  className="all-products-thumbnails"
+                />
+                <p>{product.price}</p>
+                <Link to={`/products/${product.id}`}>
+                  <button className="btn btn-primary" type="button">
+                    View Plant
+                  </button>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>
