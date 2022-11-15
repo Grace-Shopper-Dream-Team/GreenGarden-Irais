@@ -21,6 +21,7 @@ export const fetchSingleProduct = (id) => {
 };
 
 export default function singleProductReducer(state = {}, action) {
+  // console.log("action obj for single product", action)
   switch (action.type) {
     case SET_SINGLE_PRODUCT:
       return action.product;

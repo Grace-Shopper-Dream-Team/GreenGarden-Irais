@@ -13,7 +13,7 @@ class SingleProduct extends React.Component {
   render() {
     const product = this.props.product;
     const token = window.localStorage.getItem("token");
-    const userLineItems = this.props.userLineItems;
+    const userLineItemNames = this.props.userLineItemNames;
     return (
       <div id="single-product" className="column">
         <div id="single-product-detail" className="row">
@@ -27,7 +27,7 @@ class SingleProduct extends React.Component {
               type="button"
               onClick={() => {
                 if (token) {
-                  if (userLineItems.includes(product.name)) {
+                  if (userLineItemNames.includes(product.name)) {
                     window.alert(
                       "This item is already in your cart. Please go to your cart to change the quantity 💚."
                     );
@@ -35,7 +35,6 @@ class SingleProduct extends React.Component {
                     this.props.createLineItemForLoggedInUser(product);
                   }
                 } else {
-                  // test this later!
                   if (this.props.currentOrder.length === 0) {
                     this.props.createSingleOrder(product);
                   } else if (
@@ -65,7 +64,7 @@ class SingleProduct extends React.Component {
 const mapState = (state) => {
   return {
     product: state.singleProduct,
-    userLineItems: state.loggedInUser.map((item) => item.product.name),
+    userLineItemNames: state.loggedInUser.map((item) => item.product.name),
     currentOrder: state.singleOrder,
     currentLineItemNames: state.lineItems.map((item) => item.product.name),
   };
@@ -74,8 +73,9 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
-    createLineItemForLoggedInUser: (product) =>
-      dispatch(createLineItemForLoggedInUser(product)),
+    createLineItemForLoggedInUser: (product) => {
+      dispatch(createLineItemForLoggedInUser(product));
+    },
     createSingleOrder: (product) => {
       dispatch(createSingleOrder(product));
     },

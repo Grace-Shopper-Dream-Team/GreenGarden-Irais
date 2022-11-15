@@ -93,9 +93,11 @@ router.post("/:orderId/lineItems", async (req, res, next) => {
 router.post("/loggedIn", async (req, res, next) => {
   try {
     const loggedInUser = await User.findByToken(req.body.token);
+
     const getUserExistingOrderId = await Order.findOne({
       where: { userId: loggedInUser.id, status: "In Cart" },
     });
+
     let newItemSameOrder;
     if (getUserExistingOrderId.id) {
       newItemSameOrder = await LineItem.create({
@@ -105,7 +107,9 @@ router.post("/loggedIn", async (req, res, next) => {
       });
     }
     const newLineItemWithProductInfo = await LineItem.findOne({
-      where: { orderId: getUserExistingOrderId.id },
+      // was not sending back correct product added productId: req.body.id to
+      // ensure I get correct one
+      where: { orderId: getUserExistingOrderId.id, productId: req.body.id },
       include: Product,
     });
     res.status(201).send(newLineItemWithProductInfo);
