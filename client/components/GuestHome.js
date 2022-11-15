@@ -25,10 +25,10 @@ class GuestHome extends React.Component {
     return (
       <div>
         <Carousel />
-        <div class="container-fluid">
+        <div class="container">
           <div className="row">
             <Link to="/products" className="all-products">
-              <button type="button" className="all-products-button-home-page">
+              <button type="button" className="btn btn-primary">
                 Shop All Plants
               </button>
             </Link>

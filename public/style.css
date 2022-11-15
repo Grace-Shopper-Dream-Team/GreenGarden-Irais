@@ -89,3 +89,15 @@ img {
 .confirmation-image {
   max-width: 500px;
 }
+
+.btn-primary {
+  background-color: #547b49;
+  color: #ffffff;
+  border-color: #547b49;
+}
+
+.btn-primary:hover {
+  background-color: #547b49ca;
+  color: #ffffff;
+  border-color: #547b49;
+}
