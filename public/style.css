@@ -54,8 +54,8 @@ img {
 }
 
 .login {
-    width: 250px;
-  background-color: #bf7aff; /* Green */
+  width: 250px;
+  background-color: #bf7aff; /* Purple */
   border: none;
   color: white;
   padding: 5px 5px;
@@ -63,8 +63,20 @@ img {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 30px 2px;
+  /* originally had this: margin: 4px 2px; */
   cursor: pointer;
+  /* Michelle added: */
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #00000063;
+  transition: all 200ms ease-in-out;
+}
+
+/* Michelle added: */
+.login:hover {
+  border: solid 1px #bf7aff;
+  background-color: #fff;
+  color: #bf7aff;
 }
 
 :root {
@@ -72,7 +84,7 @@ img {
 }
 
 .pretty-font {
-  font-family: var(--sans)
+  font-family: var(--sans);
 }
 
 .purple {
@@ -80,32 +92,64 @@ img {
 }
 
 .nav-area-color {
-  color: rgb(174, 87, 0)
+  color: rgb(174, 87, 0);
 }
 
 .black {
-  color: black
+  color: black;
 }
 
 .inventory-table {
   max-height: 800px;
- 
 }
 
 .inventory-admin-access.MuiTable-root {
-   width:80%;
-   margin: 0 auto
+  width: 80%;
+  margin: 0 auto;
 }
 #inventory-form-admin {
-  margin-top:20px;
-  margin-bottom: 20px
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-#inventory-form-admin label{
-  display:inline;
-  margin-right:10px;
+#inventory-form-admin label {
+  display: inline;
+  margin-right: 10px;
 }
 #inventory-form-admin input {
-  margin-right:20px;
+  margin-right: 20px;
 }
 
+.product-buttons {
+  border-radius: 10px;
+  padding: 5px 15px;
+  background-color: #3db101;
+  color: #fff;
+  border: solid 1px #fff;
+  box-shadow: 5px 5px 5px #00000063;
+  transition: all 200ms ease-in-out;
+}
+
+.product-buttons:hover {
+  cursor: pointer;
+  border: solid 1px #3db101;
+  color: #3db101;
+  background-color: #fff;
+}
+
+.cart-buttons {
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #fff;
+  color: #3db101;
+  border: solid 1px #3db101;
+  box-shadow: 5px 5px 5px #00000063;
+  transition: all 200ms ease-in-out;
+}
+
+.cart-buttons:hover {
+  cursor: pointer;
+  border: solid 1px #fff;
+  color: #fff;
+  background-color: #3db101;
+}

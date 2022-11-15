@@ -20,7 +20,9 @@ class AllProducts extends React.Component {
               <img src={product.imageUrl} className="all-products-thumbnails" />
               <p>${product.price}</p>
               <Link to={`/products/${product.id}`}>
-                <button type="button">Order here</button>
+                <button className="product-buttons" type="button">
+                  Order here
+                </button>
               </Link>
             </div>
           ))}

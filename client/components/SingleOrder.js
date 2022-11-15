@@ -54,6 +54,7 @@ class SingleOrder extends React.Component {
               </p>
               <button
                 type="button"
+                className="cart-buttons"
                 onClick={() => {
                   this.props.deleteLineItem(item, order.id);
                 }}
@@ -62,6 +63,7 @@ class SingleOrder extends React.Component {
               </button>
               <button
                 type="button"
+                className="cart-buttons"
                 onClick={() => {
                   let addOne = item.qty + 1;
                   this.props.updateQuantity({
@@ -75,6 +77,7 @@ class SingleOrder extends React.Component {
               </button>
               <button
                 type="button"
+                className="cart-buttons"
                 onClick={() => {
                   if (item.qty === 1) {
                     window.alert(

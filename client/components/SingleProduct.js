@@ -25,6 +25,7 @@ class SingleProduct extends React.Component {
             <p>Description: {product.desc}</p>
             <button
               type="button"
+              className="product-buttons"
               onClick={() => {
                 if (token) {
                   if (userLineItems.includes(product.name)) {

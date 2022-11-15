@@ -79,6 +79,8 @@ class LoggedInUserCart extends Component {
                 </p>
                 <button
                   type="button"
+                  // Michelle added class name
+                  className="cart-buttons"
                   name={userLineItem.id}
                   onClick={this.handleDelete}
                 >
@@ -86,6 +88,8 @@ class LoggedInUserCart extends Component {
                 </button>
                 <button
                   type="button"
+                  // Michelle added class name
+                  className="cart-buttons"
                   name={userLineItem.id}
                   onClick={this.handleAdd}
                 >
@@ -93,6 +97,8 @@ class LoggedInUserCart extends Component {
                 </button>
                 <button
                   type="button"
+                  // Michelle added class name
+                  className="cart-buttons"
                   name={userLineItem.id}
                   onClick={(e) =>
                     userLineItem.qty == 1
