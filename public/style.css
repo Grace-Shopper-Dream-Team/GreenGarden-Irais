@@ -76,9 +76,32 @@ form div {
 
 /* CART */
 
-.cart-image {
+/* .cart-image {
   width: 100px;
   height: 100px;
+} */
+
+.entire-cart {
+  padding: 1em;
+}
+
+.cart-item {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 1em;
+}
+
+.btn-primary2 {
+  background-color: #547b49;
+  color: #ffffff;
+  border-color: #547b49;
+  justify-content: space-around;
+}
+
+.btn-primary2:hover {
+  background-color: #547b49ca;
+  color: #ffffff;
+  border-color: #547b49;
 }
 
 /* ALL PRODUCTS PAGE */

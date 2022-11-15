@@ -20,6 +20,7 @@ class SingleProduct extends React.Component {
             <p>Price: $ {product.price}</p>
             <p>Description: {product.desc}</p>
             <button
+              className="btn btn-primary"
               type="button"
               onClick={() => {
                 if (this.props.currentOrder.length === 0) {
