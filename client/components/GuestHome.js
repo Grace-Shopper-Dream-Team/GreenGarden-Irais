@@ -24,13 +24,24 @@ class GuestHome extends React.Component {
 
     return (
       <div>
-        <div>
-          <Carousel />
-          <Link to="/products" className="all-products">
-            <button type="button" className="all-products-button-home-page">
-              Shop All Plants
-            </button>
-          </Link>
+        <Carousel />
+        <div class="container-fluid">
+          <div className="row">
+            <Link to="/products" className="all-products">
+              <button type="button" className="all-products-button-home-page">
+                Shop All Plants
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div className="container text-center">
+          <div className="row">
+            <h3>Featured Product</h3>
+            <div className="row">
+              <div className="col">1 of 2</div>
+              <div className="col">2 of 2</div>
+            </div>
+          </div>
         </div>
       </div>
     );
