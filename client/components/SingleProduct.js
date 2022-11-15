@@ -13,7 +13,6 @@ class SingleProduct extends React.Component {
   render() {
     const product = this.props.product;
     const token = window.localStorage.getItem("token");
-    // added line items here - irais
     const userLineItems = this.props.userLineItems;
     return (
       <div id="single-product" className="column">
