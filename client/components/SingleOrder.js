@@ -19,8 +19,8 @@ class SingleOrder extends React.Component {
     total = total.toFixed(2);
 
     return (
-      <div>
-        <h1> Shopping Cart</h1>
+      <div className="entire-cart">
+        <h3>🛒 Shopping Cart 🛒</h3>
         {order.id ? (
           <div>
             <p>
@@ -35,13 +35,13 @@ class SingleOrder extends React.Component {
         ) : null}
         {order.id ? (
           lineItems.map((item) => (
-            <div key={item.id}>
+            <div className="cart-item" key={item.id}>
               {item.product ? (
                 <div>
-                  <h2>
+                  <h5>
                     <strong className="black">Item name:</strong>{" "}
                     {item.product.name}
-                  </h2>
+                  </h5>
                   <img src={item.product.imageUrl} className="cart-image" />
                 </div>
               ) : null}
@@ -52,55 +52,61 @@ class SingleOrder extends React.Component {
               <p>
                 <strong className="black">Item Quantity: </strong> {item.qty}
               </p>
-              <button
-                type="button"
-                onClick={() => {
-                  this.props.deleteLineItem(item, order.id);
-                }}
-              >
-                Delete
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  let addOne = item.qty + 1;
-                  this.props.updateQuantity({
-                    id: item.id,
-                    orderId: item.orderId,
-                    qty: addOne,
-                  });
-                }}
-              >
-                +
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  if (item.qty === 1) {
-                    window.alert(
-                      "You cannot reduce the item quantity to less than one.  Please delete an item to remove it from your cart 💚."
-                    );
-                  } else {
-                    let minusOne = item.qty - 1;
+              <div className="btn btn-primary2">
+                <button
+                  className="btn btn-primary2"
+                  type="button"
+                  onClick={() => {
+                    this.props.deleteLineItem(item, order.id);
+                  }}
+                >
+                  Delete
+                </button>
+                <button
+                  className="btn btn-primary2"
+                  type="button"
+                  onClick={() => {
+                    let addOne = item.qty + 1;
                     this.props.updateQuantity({
                       id: item.id,
                       orderId: item.orderId,
-                      qty: minusOne,
+                      qty: addOne,
                     });
-                  }
-                }}
-              >
-                -
-              </button>
+                  }}
+                >
+                  +
+                </button>
+                <button
+                  className="btn btn-primary2"
+                  type="button"
+                  onClick={() => {
+                    if (item.qty === 1) {
+                      window.alert(
+                        "You cannot reduce the item quantity to less than one.  Please delete an item to remove it from your cart 💚."
+                      );
+                    } else {
+                      let minusOne = item.qty - 1;
+                      this.props.updateQuantity({
+                        id: item.id,
+                        orderId: item.orderId,
+                        qty: minusOne,
+                      });
+                    }
+                  }}
+                >
+                  -
+                </button>
+              </div>
+              <br></br>
             </div>
           ))
         ) : (
-          <h2>Your Cart is Empty 🛒</h2>
+          <h3>Your Cart is Empty 🛒</h3>
         )}
         {order.id ? (
           <div>
             <Link to={"/confirmation"}>
-              <button className="login">Purchase</button>
+              <button className="btn btn-primary">Purchase</button>
             </Link>
           </div>
         ) : null}

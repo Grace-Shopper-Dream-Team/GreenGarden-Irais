@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
+import MemberHome from "./components/MemberHome";
 import { me } from "./store";
 import AllProducts from "./components/AllProducts";
 import SingleProduct from "./components/SingleProduct";
@@ -11,6 +11,7 @@ import LoggedInUserCart from "./components/LoggedInUserCart";
 import AllUsers from "./components/AllUsersView";
 import Inventory from "./components/Inventory";
 import SingleOrder from "./components/SingleOrder";
+import GuestHome from "./components/GuestHome";
 
 /**
  * COMPONENT
@@ -27,7 +28,7 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route path="/home" component={MemberHome} />
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/:productId" component={SingleProduct} />
             <Route path="/confirmation" component={Confirmation} />
@@ -38,7 +39,8 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route path="/" exact component={GuestHome} />
+            <Route path="/home" exact component={GuestHome} />
             <Route path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/products" component={AllProducts} />
