@@ -49,3 +49,15 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(FeaturedProduct);
+
+{
+  /* <h1>Check out all of our amazing plants! 🪴</h1>
+        <div key={product.id} className="all-products-tile">
+          <h3>{product.name}</h3>
+          <img src={product.imageUrl} className="all-products-thumbnails" />
+          <p>{product.price}</p>
+          <Link to={`/products/${product.id}`}>
+            <button type="button">View Plant</button>
+          </Link>
+        </div> */
+}
