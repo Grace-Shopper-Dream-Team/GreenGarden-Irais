@@ -1,4 +1,3 @@
-
 "use strict";
 
 const {
@@ -22,7 +21,7 @@ async function seed() {
       password: "123",
       firstName: "Cody",
       lastName: "Martin",
-      email: "codym@email.com",
+      email: "codym@email.com"
     }),
     User.create({
       username: "jimmie",
@@ -51,6 +50,14 @@ async function seed() {
       firstName: "John",
       lastName: "Doe",
       email: "jd@email.com",
+    }),
+    User.create({
+      username: "Mary",
+      password: "mary",
+      firstName: "mary",
+      lastName: "Doe",
+      email: "mary@email.com",
+      isAdmin: true,
     }),
   ]);
 
@@ -180,7 +187,7 @@ async function seed() {
     LineItem.create({
       productId: 5,
       orderId: 1,
-      price: 12.99,
+      price: 23.87,
       qty: 1,
     }),
     LineItem.create({
@@ -250,7 +257,7 @@ async function seed() {
     Order.create({
       userId: 1,
       email: "codym@email.com",
-      status: "In Cart",
+      status: "Purchased",
       orderDate: "11/1/22",
     }),
     Order.create({

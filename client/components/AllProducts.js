@@ -18,7 +18,7 @@ class AllProducts extends React.Component {
             <div key={product.id} className="all-products-tile">
               <h5>{product.name}</h5>
               <img src={product.imageUrl} className="all-products-thumbnails" />
-              <p>{product.price}</p>
+              <p>${product.price}</p>
               <Link to={`/products/${product.id}`}>
                 <button className="btn btn-primary" type="button">
                   View Plant

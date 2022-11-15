@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { createSingleOrder } from "../store/singleOrder";
+import { createLineItemForLoggedInUser } from "../store/loggedInUserOrders";
 import { createLineItem } from "../store/singleOrder";
 
 class SingleProduct extends React.Component {
@@ -11,6 +12,9 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product;
+    const token = window.localStorage.getItem("token");
+    // added line items here - irais
+    const userLineItems = this.props.userLineItems;
     return (
       <div id="single-product" className="column">
         <div id="single-product-detail" className="row">
@@ -23,13 +27,30 @@ class SingleProduct extends React.Component {
               className="btn btn-primary"
               type="button"
               onClick={() => {
-                if (this.props.currentOrder.length === 0) {
-                  this.props.createSingleOrder(product);
+                if (token) {
+                  if (userLineItems.includes(product.name)) {
+                    window.alert(
+                      "This item is already in your cart. Please go to your cart to change the quantity 💚."
+                    );
+                  } else {
+                    this.props.createLineItemForLoggedInUser(product);
+                  }
                 } else {
-                  this.props.createLineItem(
-                    product,
-                    this.props.currentOrder.id
-                  );
+                  // test this later!
+                  if (this.props.currentOrder.length === 0) {
+                    this.props.createSingleOrder(product);
+                  } else if (
+                    this.props.currentLineItemNames.includes(product.name)
+                  ) {
+                    window.alert(
+                      "This item is already in your cart.  Please go to your cart to change the quantity 💚."
+                    );
+                  } else {
+                    this.props.createLineItem(
+                      product,
+                      this.props.currentOrder.id
+                    );
+                  }
                 }
               }}
             >
@@ -45,13 +66,17 @@ class SingleProduct extends React.Component {
 const mapState = (state) => {
   return {
     product: state.singleProduct,
+    userLineItems: state.loggedInUser.map((item) => item.product.name),
     currentOrder: state.singleOrder,
+    currentLineItemNames: state.lineItems.map((item) => item.product.name),
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
+    createLineItemForLoggedInUser: (product) =>
+      dispatch(createLineItemForLoggedInUser(product)),
     createSingleOrder: (product) => {
       dispatch(createSingleOrder(product));
     },

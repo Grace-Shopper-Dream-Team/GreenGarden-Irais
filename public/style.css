@@ -52,8 +52,8 @@ label {
   display: block;
 }
 
-hr {
-  padding: 0px;
+nav {
+  font-family: var(--sans);
 }
 
 nav a {
@@ -76,10 +76,10 @@ form div {
 
 /* CART */
 
-/* .cart-image {
+.cart-image {
   width: 100px;
   height: 100px;
-} */
+}
 
 .entire-cart {
   padding: 1em;
@@ -172,4 +172,58 @@ img {
   color: #b9c0b5;
   font-size: 12px;
   justify-content: flex-end;
+}
+/* .login {
+  width: 250px;
+  background-color: #bf7aff; 
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+} */
+
+:root {
+  --sans: "Bree Serif", serif;
+}
+
+.pretty-font {
+  font-family: var(--sans);
+}
+
+.purple {
+  color: #bf7aff;
+}
+
+.nav-area-color {
+  color: rgb(174, 87, 0);
+}
+
+.black {
+  color: black;
+}
+
+.inventory-table {
+  max-height: 800px;
+}
+
+.inventory-admin-access.MuiTable-root {
+  width: 80%;
+  margin: 0 auto;
+}
+#inventory-form-admin {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#inventory-form-admin label {
+  display: inline;
+  margin-right: 10px;
+}
+#inventory-form-admin input {
+  margin-right: 20px;
 }
