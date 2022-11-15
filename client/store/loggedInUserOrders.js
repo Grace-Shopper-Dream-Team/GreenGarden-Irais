@@ -46,12 +46,10 @@ export const subtractFromLineItemsForLoggedInUserCreator = (updatedItem) => {
 
 // Thunks
 export const createLineItemForLoggedInUser = (product) => {
-  console.log("product in thunk", product)
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
     product.token = token;
     const { data } = await axios.post(`/api/orders/loggedIn`, product);
-    console.log("data", data)
     dispatch(createLineItemForLoggedInUserCreator(data));
   };
 };
@@ -95,7 +93,6 @@ export default function loggedInUserOrdersReducer(
   state = initialState,
   action
 ) {
-  // console.log("action.product in logged in store ", action.product)
   switch (action.type) {
     case CREATE_LINE_ITEM_LOGGED_IN_USER:
       return [...state, action.product];

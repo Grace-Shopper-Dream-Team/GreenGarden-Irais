@@ -38,7 +38,7 @@ class LoggedInUserCart extends Component {
 
   render() {
     const userLineItems = this.props.userLineItems;
-    // console.log("line items ", userLineItems[0])
+    console.log("line items ", userLineItems[0]);
     let total = 0;
     userLineItems.forEach((userLineItem) => {
       let currentItemPrice = Number(userLineItem.price);
@@ -50,10 +50,14 @@ class LoggedInUserCart extends Component {
     return (
       <div className="entire-cart">
         <h3>🛒 Shopping Cart 🛒</h3>
-        <p>
-          <strong className="black">Order Number:</strong> 
-          {userLineItems.orderId}
-        </p>
+        {userLineItems.length === 0 ? null : <div>    <p>
+          <strong className="black">Order Number: </strong> 
+          {userLineItems[0].orderId}
+        </p></div>}
+        {/* <p>
+          <strong className="black">Order Number: </strong> 
+          {userLineItems[0].orderId}
+        </p> */}
         <p>
           <strong className="black">Subtotal:</strong> ${total}
         </p>

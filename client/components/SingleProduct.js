@@ -12,10 +12,8 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product;
-    console.log("product in single product", product);
     const token = window.localStorage.getItem("token");
     const userLineItemNames = this.props.userLineItemNames;
-    console.log("user Line items in single product", userLineItemNames);
     return (
       <div id="single-product" className="column">
         <div id="single-product-detail" className="row">
@@ -30,18 +28,14 @@ class SingleProduct extends React.Component {
               onClick={() => {
                 if (token) {
                   if (userLineItemNames.includes(product.name)) {
-                    console.log("in includes if");
                     window.alert(
                       "This item is already in your cart. Please go to your cart to change the quantity 💚."
                     );
                   } else {
-                    console.log("product in token else", product.name);
                     this.props.createLineItemForLoggedInUser(product);
                   }
                 } else {
-                  // test this later!
                   if (this.props.currentOrder.length === 0) {
-                    // console.log("going into guest stuff")
                     this.props.createSingleOrder(product);
                   } else if (
                     this.props.currentLineItemNames.includes(product.name)
@@ -80,7 +74,6 @@ const mapDispatch = (dispatch) => {
   return {
     getSingleProduct: (id) => dispatch(fetchSingleProduct(id)),
     createLineItemForLoggedInUser: (product) => {
-      console.log("product in dispacth", product);
       dispatch(createLineItemForLoggedInUser(product));
     },
     createSingleOrder: (product) => {

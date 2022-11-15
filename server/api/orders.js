@@ -93,13 +93,10 @@ router.post("/:orderId/lineItems", async (req, res, next) => {
 router.post("/loggedIn", async (req, res, next) => {
   try {
     const loggedInUser = await User.findByToken(req.body.token);
-    console.log("logged in user id, should be 1 for cody", loggedInUser.id)
-    console.log("req.body =====>", req.body)
 
     const getUserExistingOrderId = await Order.findOne({
       where: { userId: loggedInUser.id, status: "In Cart" },
     });
-    console.log("******OLd order ID should be 2", getUserExistingOrderId.id)
 
     let newItemSameOrder;
     if (getUserExistingOrderId.id) {
@@ -115,7 +112,6 @@ router.post("/loggedIn", async (req, res, next) => {
       where: { orderId: getUserExistingOrderId.id, productId: req.body.id },
       include: Product,
     });
-    console.log("SENDING BACK _______>", newLineItemWithProductInfo)
     res.status(201).send(newLineItemWithProductInfo);
   } catch (error) {
     next(error);
