@@ -20,9 +20,18 @@ class Carousel extends React.Component {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          <div className="carousel-item-active">
+          <div className="carousel-item active">
             <img
-              src="https://marketplace.canva.com/EAEub36J910/1/0/1600w/canva-green-and-brown-watercolor-plant-quote-desktop-wallpaper-4p30bxBtvkk.jpg"
+              src="https://marketplace.canva.com/EAEub36J910/1/0/1600w/canva-green-and-brown-watercolor-plant-quote-desktop-wallpaper-4p30bxBtvkk.jpg
+"
+              className="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="https://cdn.wallpapersafari.com/94/25/1WYjcp.jpg
+"
               className="d-block w-100"
               alt="..."
             />
@@ -30,13 +39,6 @@ class Carousel extends React.Component {
           <div className="carousel-item">
             <img
               src="https://marketplace.canva.com/EAEub3WxgaM/1/0/1600w/canva-boho-watercolor-plant-quote-desktop-wallpaper-eVdYpAFxye4.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://img.freepik.com/free-vector/cute-plant-lover-quote-template-vector-doodle-blog-banner_53876-118611.jpg?w=2000"
               className="d-block w-100"
               alt="..."
             />
