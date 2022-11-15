@@ -5,6 +5,10 @@ body {
   background-color: #ffffff;
 }
 
+.logo {
+  padding: 20px;
+}
+
 .col {
   padding: 90px;
 }
@@ -41,11 +45,11 @@ body {
 
 a {
   text-decoration: none;
-  color: #000000;
+  color: #547b49;
 }
 
 a:hover {
-  color: #547b49 !important;
+  color: #000000 !important;
 }
 
 label {
@@ -74,7 +78,7 @@ img {
 .all-products-view {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .all-products-thumbnails {
@@ -101,4 +105,10 @@ img {
   background-color: #547b49ca;
   color: #ffffff;
   border-color: #547b49;
+}
+
+/* CAROUSEL */
+
+#indicator-line {
+  background-color: black;
 }

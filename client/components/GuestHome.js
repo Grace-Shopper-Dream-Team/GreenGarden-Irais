@@ -17,10 +17,6 @@ class GuestHome extends React.Component {
   }
   render() {
     const products = this.props.products;
-    // console.log("------->", products);
-
-    // const image = "../../public/assets/HomeCoverPic2.png";
-    // const image = HomeCoverPic;
 
     return (
       <div>
@@ -39,7 +35,7 @@ class GuestHome extends React.Component {
           <div className="all-products-view">
             {products.map((product) => (
               <div key={product.id} className="all-products-tile">
-                <h3>{product.name}</h3>
+                <h5>{product.name}</h5>
                 <img
                   src={product.imageUrl}
                   className="all-products-thumbnails"
