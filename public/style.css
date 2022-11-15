@@ -31,53 +31,6 @@ body {
 }
 /* END LAYOUT */
 
-/* CAROUSEL SECTION */
-/* .carousel-item-active {
-  background: url(./assets/HomeCoverPic2.png);
-} */
-
-/* .slider_section div#carouselExampleControls {
-  overflow: hidden;
-}
-
-.slider_section .img-box img {
-  width: 100%;
-}
-
-.slider_section .carousel-control-prev,
-.slider_section .carousel-control-next {
-  width: 90px;
-  height: 90px;
-  background-color: #252525;
-  opacity: 1;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  background-repeat: no-repeat;
-  background-size: 12px;
-}
-
-.slider_section .carousel-control-prev:hover,
-.slider_section .carousel-control-next:hover {
-  opacity: 0.9;
-}
-
-.slider_section .carousel-control-prev {
-  border-radius: 0 100% 100% 0;
-  background-image: url(./assets/HomeCoverPic2.png);
-  left: -50px;
-  background-position: 58px center;
-}
-
-.slider_section .carousel-control-next {
-  border-radius: 100% 0 0 100%;
-  background-image: url(./assets/HomeCoverPic2.png);
-  right: -45px;
-  background-position: 20px center;
-} */
-
-/* END CAROUSEL SECTION */
-
 a {
   text-decoration: none;
 }
