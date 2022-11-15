@@ -5,6 +5,8 @@ import Carousel from "./Carousel";
 import { getProducts } from "../store/products";
 import { Link } from "react-router-dom";
 
+//~~~~> TODO: NOT SURE WHY TRENDING PRODUCT LINKS AREN'T WORKING
+
 // CLASS COMPONENT
 class GuestHome extends React.Component {
   constructor(props) {
@@ -42,6 +44,7 @@ class GuestHome extends React.Component {
                   className="all-products-thumbnails"
                 />
                 <p>{product.price}</p>
+
                 <Link to={`/products/${product.id}`}>
                   <button className="btn btn-primary" type="button">
                     View Plant
