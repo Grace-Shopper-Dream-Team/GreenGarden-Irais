@@ -2,12 +2,13 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
-import Home from "./components/Home";
+import MemberHome from "./components/MemberHome";
 import { me } from "./store";
 import AllProducts from "./components/AllProducts";
 import SingleProduct from "./components/SingleProduct";
 import Confirmation from "./components/Confirmation";
 import SingleOrder from "./components/SingleOrder";
+import GuestHome from "./components/GuestHome";
 
 /**
  * COMPONENT
@@ -17,6 +18,7 @@ class Routes extends Component {
     this.props.loadInitialData();
   }
 
+  // TODO: ALLOW LOGGED IN USERS TO SEE PRODUCT PAGES ETC.
   render() {
     const { isLoggedIn } = this.props;
 
@@ -24,12 +26,17 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route path="/home" component={MemberHome} />
             <Redirect to="/home" />
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="/confirmation" component={Confirmation} />
+            <Route path="/cart" component={SingleOrder} />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route path="/" exact component={GuestHome} />
+            <Route path="/home" exact component={GuestHome} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route exact path="/products" component={AllProducts} />

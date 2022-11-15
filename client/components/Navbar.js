@@ -5,7 +5,9 @@ import { logout } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>Green Garden</h1>
+    <h1>
+      <Link to="/home">Green Garden</Link>
+    </h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -30,7 +32,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     <hr />
   </div>
 );
-
 
 /**
  * CONTAINER

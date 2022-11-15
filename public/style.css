@@ -1,7 +1,78 @@
 body {
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
+  color: #040000;
+  background-color: #ffffff;
 }
+
+/* LAYOUT */
+.layout_padding {
+  padding: 90px 0;
+}
+
+.layout_padding2 {
+  padding: 45px 0;
+}
+
+.layout_padding2-top {
+  padding-top: 45px;
+}
+
+.layout_padding2-bottom {
+  padding-bottom: 45px;
+}
+
+.layout_padding-top {
+  padding-top: 90px;
+}
+
+.layout_padding-bottom {
+  padding-bottom: 90px;
+}
+/* END LAYOUT */
+
+/* SLIDER SECTION */
+.slider_section div#carouselExampleControls {
+  overflow: hidden;
+}
+
+.slider_section .img-box img {
+  width: 100%;
+}
+
+.slider_section .carousel-control-prev,
+.slider_section .carousel-control-next {
+  width: 90px;
+  height: 90px;
+  background-color: #252525;
+  opacity: 1;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-repeat: no-repeat;
+  background-size: 12px;
+}
+
+.slider_section .carousel-control-prev:hover,
+.slider_section .carousel-control-next:hover {
+  opacity: 0.9;
+}
+
+.slider_section .carousel-control-prev {
+  border-radius: 0 100% 100% 0;
+  background-image: url(./assets/HomeCoverPic2.png);
+  left: -50px;
+  background-position: 58px center;
+}
+
+.slider_section .carousel-control-next {
+  border-radius: 100% 0 0 100%;
+  background-image: url(./assets/HomeCoverPic2.png);
+  right: -45px;
+  background-position: 20px center;
+}
+
+/* END SLIDER SECTION */
 
 a {
   text-decoration: none;
@@ -48,3 +119,17 @@ img {
 .confirmation-image {
   max-width: 500px;
 }
+
+/* .home-cover-pic {
+  background: url("./assets/HomeCoverPic2.png");
+  background-repeat: "no-repeat";
+  background-size: "contain";
+  height: 600;
+  width: 600;
+  /* position: relative; */
+/* overflow: hidden; */
+/* max-height: inherit; 
+   background-color: transparent; 
+} */
+
+/* Home Page - Cover w/Text & Button */
