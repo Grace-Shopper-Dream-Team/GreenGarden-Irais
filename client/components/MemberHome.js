@@ -1,21 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-import AllProducts from "./AllProducts";
+import GuestHome from "./GuestHome";
 
-/**
- * COMPONENT
- */
-
-export const Home = (props) => {
+// CLASS COMPONENT
+export const MemberHome = (props) => {
   const { username, isAdmin } = props;
 
   return isAdmin ? (
     <div>
       <h3>Welcome, Admin {username}</h3>
+      <GuestHome />
     </div>
   ) : (
     <div>
-      <h1 className="purple pretty-font">Welcome back, {username}!</h1>
+      <h1>Welcome back, {username}!</h1>
+      <GuestHome />
     </div>
   );
 };
@@ -30,4 +29,4 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState)(Home);
+export default connect(mapState)(MemberHome);

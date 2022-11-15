@@ -47,8 +47,8 @@ class LoggedInUserCart extends Component {
     total = total.toFixed(2);
 
     return (
-      <div>
-        <h1>Shopping Cart 🛒</h1>
+      <div className="entire-cart">
+        <h3>🛒 Shopping Cart 🛒</h3>
         <p>
           <strong className="black">Order Number:</strong>{" "}
           {userLineItems.orderId}
@@ -59,7 +59,7 @@ class LoggedInUserCart extends Component {
         <div>
           {userLineItems.map((userLineItem, idx) => {
             return (
-              <div key={idx}>
+              <div className="cart-item" key={idx}>
                 <h2>
                   <strong className="black">Item name: </strong>
                   {userLineItem.product.name} 🪴
@@ -77,33 +77,38 @@ class LoggedInUserCart extends Component {
                   <strong className="black">Item Quantity: </strong>{" "}
                   {userLineItem.qty}
                 </p>
-                <button
-                  type="button"
-                  name={userLineItem.id}
-                  onClick={this.handleDelete}
-                >
-                  Delete
-                </button>
-                <button
-                  type="button"
-                  name={userLineItem.id}
-                  onClick={this.handleAdd}
-                >
-                  +
-                </button>
-                <button
-                  type="button"
-                  name={userLineItem.id}
-                  onClick={(e) =>
-                    userLineItem.qty == 1
-                      ? window.alert(
-                          "You cannot reduce the item quantity to less than one.  Please delete an item to remove it from your cart 💚."
-                        )
-                      : this.handleSubtract(e)
-                  }
-                >
-                  -
-                </button>
+                <div className="btn btn-primary2">
+                  <button
+                    className="btn btn-primary2"
+                    type="button"
+                    name={userLineItem.id}
+                    onClick={this.handleDelete}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="btn btn-primary2"
+                    type="button"
+                    name={userLineItem.id}
+                    onClick={this.handleAdd}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="btn btn-primary2"
+                    type="button"
+                    name={userLineItem.id}
+                    onClick={(e) =>
+                      userLineItem.qty == 1
+                        ? window.alert(
+                            "You cannot reduce the item quantity to less than one.  Please delete an item to remove it from your cart 💚."
+                          )
+                        : this.handleSubtract(e)
+                    }
+                  >
+                    -
+                  </button>
+                </div>
                 <br></br>
               </div>
             );
@@ -112,7 +117,7 @@ class LoggedInUserCart extends Component {
         <br></br>
         <Link to="/confirmation">
           {" "}
-          <button className="login">Purchase</button>
+          <button className="btn btn-primary">Purchase</button>
         </Link>
         <Route path="/confirmation" component={Confirmation} />
         <br></br>

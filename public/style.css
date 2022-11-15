@@ -1,11 +1,51 @@
+/* LAYOUT */
+
 body {
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
+  color: #373738;
+  background-color: #ffffff;
 }
 
-a {
+.logo a {
+  display: inline-block;
+  color: #373738;
   text-decoration: none;
 }
+
+.col {
+  padding: 90px;
+}
+
+.row {
+  padding: 30px;
+}
+
+.layout_padding {
+  padding: 90px 0;
+}
+
+.layout_padding2 {
+  padding: 45px 0;
+}
+
+.layout_padding2-top {
+  padding-top: 45px;
+}
+
+.layout_padding2-bottom {
+  padding-bottom: 45px;
+}
+
+.layout_padding-top {
+  padding-top: 90px;
+}
+
+.layout_padding-bottom {
+  padding-bottom: 90px;
+}
+
+/* NAV BAR */
 
 label {
   display: block;
@@ -18,25 +58,57 @@ nav {
 nav a {
   display: inline-block;
   margin: 1em;
+  text-decoration: none;
+  color: #547b49;
 }
+
+nav a:hover {
+  color: #373738 !important;
+}
+
+/* FORM */
 
 form div {
   margin: 1em;
   display: inline-block;
 }
 
-img {
-  border-radius: 12px;
-}
+/* CART */
 
 .cart-image {
   width: 100px;
   height: 100px;
 }
 
+.entire-cart {
+  padding: 1em;
+}
+
+.cart-item {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 1em;
+}
+
+.btn-primary2 {
+  background-color: #547b49;
+  color: #ffffff;
+  border-color: #547b49;
+  justify-content: space-around;
+}
+
+.btn-primary2:hover {
+  background-color: #547b49ca;
+  color: #ffffff;
+  border-color: #547b49;
+}
+
+/* ALL PRODUCTS PAGE */
+
 .all-products-view {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .all-products-thumbnails {
@@ -53,9 +125,56 @@ img {
   max-width: 500px;
 }
 
-.login {
-    width: 250px;
-  background-color: #bf7aff; /* Green */
+img {
+  border-radius: 12px;
+}
+
+/* HOMEPAGE - GENERAL */
+
+.btn-primary {
+  background-color: #547b49;
+  color: #ffffff;
+  border-color: #547b49;
+}
+
+.btn-primary:hover {
+  background-color: #547b49ca;
+  color: #ffffff;
+  border-color: #547b49;
+}
+
+.trending-container {
+  padding: 1em;
+}
+
+/* HOMEPAGE - CAROUSEL */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #547b49;
+}
+
+/* #carousel-indicators {
+  background-color: #547b49;
+} */
+
+.trending-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* FOOTER */
+.footer {
+  padding: 1em;
+  background-color: #547b49;
+  color: #b9c0b5;
+  font-size: 12px;
+  justify-content: flex-end;
+}
+/* .login {
+  width: 250px;
+  background-color: #bf7aff; 
   border: none;
   color: white;
   padding: 5px 5px;
@@ -65,14 +184,14 @@ img {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-}
+} */
 
 :root {
   --sans: "Bree Serif", serif;
 }
 
 .pretty-font {
-  font-family: var(--sans)
+  font-family: var(--sans);
 }
 
 .purple {
@@ -80,32 +199,30 @@ img {
 }
 
 .nav-area-color {
-  color: rgb(174, 87, 0)
+  color: rgb(174, 87, 0);
 }
 
 .black {
-  color: black
+  color: black;
 }
 
 .inventory-table {
   max-height: 800px;
- 
 }
 
 .inventory-admin-access.MuiTable-root {
-   width:80%;
-   margin: 0 auto
+  width: 80%;
+  margin: 0 auto;
 }
 #inventory-form-admin {
-  margin-top:20px;
-  margin-bottom: 20px
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-#inventory-form-admin label{
-  display:inline;
-  margin-right:10px;
+#inventory-form-admin label {
+  display: inline;
+  margin-right: 10px;
 }
 #inventory-form-admin input {
-  margin-right:20px;
+  margin-right: 20px;
 }
-

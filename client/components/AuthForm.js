@@ -30,7 +30,7 @@ const AuthForm = (props) => {
           <input name="password" type="password" />
         </div>
         <div>
-          <button className="green-background login" type="submit">
+          <button className="btn btn-primary" type="submit">
             {displayName}
           </button>
         </div>
