@@ -1,3 +1,5 @@
+/* LAYOUT */
+
 body {
   font-family: "Poppins", sans-serif;
   text-align: center;
@@ -17,7 +19,6 @@ body {
   padding: 30px;
 }
 
-/* LAYOUT */
 .layout_padding {
   padding: 90px 0;
 }
@@ -41,7 +42,8 @@ body {
 .layout_padding-bottom {
   padding-bottom: 90px;
 }
-/* END LAYOUT */
+
+/* NAV BAR */
 
 a {
   text-decoration: none;
@@ -61,6 +63,8 @@ nav a {
   margin: 1em;
 }
 
+/* FORM */
+
 form div {
   margin: 1em;
   display: inline-block;
@@ -70,10 +74,14 @@ img {
   border-radius: 12px;
 }
 
+/* CART */
+
 .cart-image {
   width: 100px;
   height: 100px;
 }
+
+/* ALL PRODUCTS PAGE */
 
 .all-products-view {
   display: flex;
@@ -95,6 +103,8 @@ img {
   max-width: 500px;
 }
 
+/* HOMEPAGE - GENERAL */
+
 .btn-primary {
   background-color: #547b49;
   color: #ffffff;
@@ -107,8 +117,19 @@ img {
   border-color: #547b49;
 }
 
-/* CAROUSEL */
+/* HOMEPAGE - CAROUSEL */
 
-#indicator-line {
-  background-color: black;
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #547b49;
+}
+
+/* #carousel-indicators {
+  background-color: #547b49;
+} */
+
+.trending-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

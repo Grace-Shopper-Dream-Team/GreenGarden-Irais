@@ -16,7 +16,8 @@ class GuestHome extends React.Component {
     this.props.getProducts();
   }
   render() {
-    const products = this.props.products;
+    const slicedProducts = this.props.products.slice(6, 9);
+    console.log(slicedProducts);
 
     return (
       <div>
@@ -30,10 +31,10 @@ class GuestHome extends React.Component {
             </Link>
           </div>
         </div>
-        <div className="container text-center">
+        <div className="container">
           <h3>What's Trending</h3>
-          <div className="all-products-view">
-            {products.map((product) => (
+          <div className="trending-view">
+            {slicedProducts.map((product) => (
               <div key={product.id} className="all-products-tile">
                 <h5>{product.name}</h5>
                 <img
