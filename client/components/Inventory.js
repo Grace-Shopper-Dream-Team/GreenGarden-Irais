@@ -25,7 +25,7 @@ class Inventory extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getInventory();
+    this.props.isAdmin ? this.props.getInventory() : null;
   }
 
   isClicked() {

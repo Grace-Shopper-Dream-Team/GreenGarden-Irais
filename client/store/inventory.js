@@ -4,6 +4,7 @@ const GET_INVENTORY = "GET_INVENTORY";
 const CREATE_INVENTORY = "CREATE_INVENTORY";
 const DELETE_INVENTORY = "DELETE_INVENTORY";
 const EDIT_INVENTORY = "EDIT_INVENTORY";
+const TOKEN = "token";
 
 export const _getInventory = (inventory) => {
   return {
@@ -45,26 +46,48 @@ export const getInventory = () => {
 };
 
 export const createInventory = (inventory) => {
-  return async (dispatch) => {
-    const { data: created } = await axios.post("/api/products", inventory);
-    dispatch(_createInventory(created));
-  };
+  const token = window.localStorage.getItem(TOKEN);
+  if (token) {
+    return async (dispatch) => {
+      const { data: created } = await axios.post("/api/products", inventory, {
+        headers: {
+          authorization: token,
+        },
+      });
+      dispatch(_createInventory(created));
+    };
+  }
 };
 
 export const deleteInventory = (id) => {
   return async (dispatch) => {
-    const { data: inventory } = await axios.delete(`/api/products/${id}`);
-    dispatch(_deleteInventory(inventory));
+    const token = window.localStorage.getItem(TOKEN);
+    if (token) {
+      const { data: inventory } = await axios.delete(`/api/products/${id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+      dispatch(_deleteInventory(inventory));
+    }
   };
 };
 
 export const editInventory = (inventory) => {
   return async (dispatch) => {
-    const { data: updated } = await axios.put(
-      `/api/products/${inventory.id}`,
-      inventory
-    );
-    dispatch(_editInventory(updated));
+    const token = window.localStorage.getItem(TOKEN);
+    if (token) {
+      const { data: updated } = await axios.put(
+        `/api/products/${inventory.id}`,
+        inventory,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      dispatch(_editInventory(updated));
+    }
   };
 };
 

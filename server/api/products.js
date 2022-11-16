@@ -2,6 +2,7 @@ const router = require("express").Router();
 const {
   models: { Product },
 } = require("../db");
+const { requireToken } = require("./gatekeepingMiddleware");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -21,7 +22,7 @@ router.get("/:productId", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", requireToken, async (req, res, next) => {
   try {
     res.status(201).send(await Product.create(req.body));
   } catch (error) {
@@ -29,7 +30,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/:productId", async (req, res, next) => {
+router.put("/:productId", requireToken, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId);
     res.send(await product.update(req.body));
@@ -38,7 +39,7 @@ router.put("/:productId", async (req, res, next) => {
   }
 });
 
-router.delete("/:productId", async (req, res, next) => {
+router.delete("/:productId", requireToken, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId);
     await product.destroy();

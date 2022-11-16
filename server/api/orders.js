@@ -99,7 +99,7 @@ router.post("/loggedIn", async (req, res, next) => {
     });
 
     let newItemSameOrder;
-    if (getUserExistingOrderId.id) {
+    if (getUserExistingOrderId && getUserExistingOrderId.id) {
       newItemSameOrder = await LineItem.create({
         orderId: getUserExistingOrderId.id,
         productId: req.body.id,

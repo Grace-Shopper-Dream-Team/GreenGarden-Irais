@@ -11,7 +11,7 @@ import Paper from "@material-ui/core/Paper";
 
 class AllUsers extends React.Component {
   componentDidMount() {
-    this.props.getUsers();
+    this.props.isAdmin ? this.props.getUsers() : null;
   }
 
   render() {
