@@ -1,9 +1,12 @@
+var CompressionWebpackPlugin = require("compression-webpack-plugin");
+
 module.exports = {
   entry: ["./client/index.js"],
   output: {
     path: __dirname,
     filename: "./public/bundle.js",
   },
+  mode: "production",
   // devtool: "source-map",
   module: {
     rules: [
@@ -17,4 +20,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new CompressionWebpackPlugin({
+      deleteOriginalAssets: true,
+    }),
+  ],
 };
