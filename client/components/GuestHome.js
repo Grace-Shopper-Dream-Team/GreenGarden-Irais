@@ -19,7 +19,6 @@ class GuestHome extends React.Component {
   }
   render() {
     const slicedProducts = this.props.products.slice(6, 9);
-    console.log(slicedProducts);
 
     return (
       <div>
