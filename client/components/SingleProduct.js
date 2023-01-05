@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { createSingleOrder } from "../store/singleOrder";
 import { createLineItemForLoggedInUser } from "../store/loggedInUserOrders";
 import { createLineItem } from "../store/singleOrder";
+import Button from 'react-bootstrap/Button';
 
 const SingleProduct = (props) => {
-  console.log('props', props)
-
   const product = props.product;
   const token = window.localStorage.getItem("token");
   const userLineItemNames = props.userLineItemNames;
+
+  const [addedToCart, setAddedToCart] = useState(false)
+  const [grayButtonColor, setGrayButtonColor] = useState(false)
 
   useEffect(() => {
     props.getSingleProduct(props.match.params.productId)
@@ -24,8 +26,8 @@ const SingleProduct = (props) => {
           <h1>{product.name}</h1>
           <p>Price: $ {product.price}</p>
           <p>Description: {product.desc}</p>
-          <button
-            className="btn btn-primary"
+          <Button
+            variant={grayButtonColor ? 'secondary' : "primary"}
             type="button"
             onClick={() => {
               if (token) {
@@ -34,28 +36,34 @@ const SingleProduct = (props) => {
                     "This item is already in your cart. Please go to your cart to change the quantity 💚."
                   );
                 } else {
-                  this.props.createLineItemForLoggedInUser(product);
+                  setAddedToCart(true)
+                  setGrayButtonColor(true)
+                  props.createLineItemForLoggedInUser(product);
                 }
               } else {
-                if (this.props.currentOrder.length === 0) {
-                  this.props.createSingleOrder(product);
+                if (props.currentOrder.length === 0) {
+                  setAddedToCart(true)
+                  setGrayButtonColor(true)
+                  props.createSingleOrder(product);
                 } else if (
-                  this.props.currentLineItemNames.includes(product.name)
+                  props.currentLineItemNames.includes(product.name)
                 ) {
                   window.alert(
-                    "This item is already in your cart.  Please go to your cart to change the quantity 💚."
+                    "This item is already in your cart. Please go to your cart to change the quantity 💚."
                   );
                 } else {
-                  this.props.createLineItem(
+                  setAddedToCart(true)
+                  setGrayButtonColor(true)
+                  props.createLineItem(
                     product,
-                    this.props.currentOrder.id
+                    props.currentOrder.id
                   );
                 }
               }
             }}
           >
-            Add to Cart
-          </button>
+            {addedToCart ? 'Added to cart' : 'Add to cart'}
+          </Button>
         </div>
       </div>
       <hr />

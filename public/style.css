@@ -130,6 +130,9 @@ img {
 }
 
 /* HOMEPAGE - GENERAL */
+.gray {
+  background-color: gray;
+}
 
 .btn-primary {
   background-color: #547b49;
