@@ -7,13 +7,13 @@ class AllProducts extends React.Component {
   componentDidMount() {
     this.props.getProducts();
   }
-
   render() {
     const products = this.props.products;
     return (
       <div>
         <h3>Check out all of our amazing plants! 🪴</h3>
         <div className="all-products-view">
+          <h1>Hello</h1>
           {products.map((product) => (
             <div key={product.id} className="all-products-tile">
               <h5>{product.name}</h5>
