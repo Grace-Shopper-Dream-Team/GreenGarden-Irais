@@ -1,12 +1,12 @@
 // loads are enviornemnt vars
-require('dotenv').config()
+// require('dotenv').config()
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
 module.exports = app;
 
-const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
+// const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 // logging middleware
 app.use(morgan("dev"));
 

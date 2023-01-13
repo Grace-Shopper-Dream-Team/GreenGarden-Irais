@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Address, Product, LineItem, Order },
+  models: { User, Address, Product, LineItem, Order, LikedItems },
 } = require("../server/db");
 
 /**
@@ -286,11 +286,31 @@ async function seed() {
     }),
   ]);
 
+  const likedItems = await Promise.all([
+    LikedItems.create({
+      productId: 1,
+      name: "Aloe Vera",
+      price: 12.99,
+      description: "Having an aloe vera plant around (and using it, should the need arise), can make even the most modern and high-tech of us feel like herbalist apothecaries. Snipping off a piece of an aloe vera’s leaf and applying the clear, cool gel on burns, cuts, rashes, and sunburns offers instant relief and can speed the healing process. Here's how to care for an aloe vera of your own.",
+      imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_488/at%2Farchive%2F8a1ff3f2d8ccbee3918ad01b75417e5b59f19686",
+      userId: 1
+    }),
+    LikedItems.create({
+      productId: 1,
+      name: "Money Tree",
+      price: 65.77,
+      description: "If you’ve ever noticed a little potted tree with an unusual braided trunk (that’s one on the far left in the photo above), you’ve encountered a money tree. The trunk braid and leaves have symbolism for many people who believe that they bring good luck and financial success.",
+      imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_486/project%20prism%2Fcolor%20search%20archive%2F95356a0830788aa37fa166d9d8818fbada3ebb89",
+      userId: 1
+    })
+  ])
+
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${products.length} products`);
   console.log(`seeded ${addresses.length} addresses`);
   console.log(`seeded ${lineItems.length} lineItems`);
   console.log(`seeded ${orders.length} orders`);
+  console.log(`seeded ${likedItems.length} likedItems`)
   console.log(`seeded successfully`);
 
   return {
