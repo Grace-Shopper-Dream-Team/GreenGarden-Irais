@@ -1,11 +1,12 @@
+// loads are enviornemnt vars
+require('dotenv').config()
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
 module.exports = app;
 
-// if (process.env.NODE_ENV !== "development") require("../secrets");
-
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 // logging middleware
 app.use(morgan("dev"));
 
@@ -41,6 +42,23 @@ app.use((req, res, next) => {
 app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "public/index.html"));
 });
+
+// app.post('/create-checkout-session', async (req, res) => {
+//   try {
+//     const session = await stripe.checkout.sessions.create({
+//       payment_method_types: ['card'],
+//       mode: 'payment',
+//       // line_items: req.body.items.map(item => {
+//       //   const store
+//       // }),
+//       success_url: `${process.env.SERVER_URL}/sucess.html`,
+//       cancel_url: `${process.env.SERVER_URL}/cancel.html`
+//     })
+//     res.json({ url: session.url })
+//   } catch (e) {
+//     res.status(500).send(e.message)
+//   }
+// })
 
 // error handling endware
 app.use((err, req, res, next) => {

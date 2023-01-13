@@ -14,6 +14,7 @@ const SingleProduct = (props) => {
   const [addedToCart, setAddedToCart] = useState(false)
   const [grayButtonColor, setGrayButtonColor] = useState(false)
 
+
   useEffect(() => {
     props.getSingleProduct(props.match.params.productId)
   }, [])

@@ -5,9 +5,43 @@ import { deleteLineItem } from "../store/singleOrder";
 import { updateQuantity } from "../store/singleOrder";
 
 class SingleOrder extends React.Component {
+  constructor() {
+    super()
+    this.checkout = this.checkout.bind(this)
+  }
+  // checkout() {
+  //   console.log('in checkout')
+  //   fetch('/create-checkout-session', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       items: [
+  //         { id: 1, quantity: 3 },
+  //         { id: 2, quantity: 1 }
+  //       ],
+  //     })
+  //   })
+  //     .then(res => {
+  //       if (res.ok) {
+  //         console.log('in res,ok', window.location)
+  //         return res.json()
+  //       }
+  //       return res.json().then(json => Promise.reject(json))
+  //     })
+  //     .then(({ url }) => {
+  //       console.log('HOLA')
+  //       window.location = url
+  //     })
+  //     .catch(e => {
+  //       console.error(e.error)
+  //     })
+  // }
   render() {
     const order = this.props.currentOrder;
     const lineItems = this.props.currentLineItems;
+
 
     // Calculate cart subtotal
     let total = 0;
@@ -106,7 +140,7 @@ class SingleOrder extends React.Component {
         {order.id ? (
           <div>
             <Link to={"/confirmation"}>
-              <button className="btn btn-primary">Purchase</button>
+              <button className="btn btn-primary" onClick={this.checkout}>Checkout</button>
             </Link>
           </div>
         ) : null}
