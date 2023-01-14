@@ -229,3 +229,8 @@ img {
 #inventory-form-admin input {
   margin-right: 20px;
 }
+
+.flex-for-liked-items {
+  display: flex;
+  justify-content: space-evenly;
+}

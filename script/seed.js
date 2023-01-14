@@ -301,7 +301,58 @@ async function seed() {
       price: 65.77,
       description: "If you’ve ever noticed a little potted tree with an unusual braided trunk (that’s one on the far left in the photo above), you’ve encountered a money tree. The trunk braid and leaves have symbolism for many people who believe that they bring good luck and financial success.",
       imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_486/project%20prism%2Fcolor%20search%20archive%2F95356a0830788aa37fa166d9d8818fbada3ebb89",
-      userId: 1
+      userId: 2
+    }),
+    LikedItems.create({
+      productId: 1,
+      name: "Money Tree",
+      price: 65.77,
+      description: "If you’ve ever noticed a little potted tree with an unusual braided trunk (that’s one on the far left in the photo above), you’ve encountered a money tree. The trunk braid and leaves have symbolism for many people who believe that they bring good luck and financial success.",
+      imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_486/project%20prism%2Fcolor%20search%20archive%2F95356a0830788aa37fa166d9d8818fbada3ebb89",
+      userId: 3
+    }),
+    LikedItems.create({
+      productId: 1,
+      name: "Aloe Vera",
+      price: 12.99,
+      description: "Having an aloe vera plant around (and using it, should the need arise), can make even the most modern and high-tech of us feel like herbalist apothecaries. Snipping off a piece of an aloe vera’s leaf and applying the clear, cool gel on burns, cuts, rashes, and sunburns offers instant relief and can speed the healing process. Here's how to care for an aloe vera of your own.",
+      imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_488/at%2Farchive%2F8a1ff3f2d8ccbee3918ad01b75417e5b59f19686",
+      userId: 4
+    }),
+    LikedItems.create({
+      productId: 9,
+      name: "Rubber Plant",
+      imageUrl:
+        "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_487/project%20prism%2Fcolor%20search%20archive%2F89f5a8844ff040228052e92b31ca867051e36b01",
+      price: 88.99,
+      description: `In recent years, the ubiquitous fiddle leaf fig has dominated all other entrants in the competition for most popular in-house tree-like plants. But we think it’s time to give this understated but stately tree — with its large, deep green leaves — a second look and another chance. Here’s how to maintain a rubber plant as a striking part of your home decor for years to come.`,
+      userId: 5,
+    }),
+    LikedItems.create({
+      productId: 4,
+      name: "Lavender",
+      imageUrl:
+        "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_488/at%2Fart%2Fphoto%2F2019-05%2Fgrowing-lavender-indoors%2Flead",
+      price: 23.87,
+      description: `Looking for a houseplant that will give back? Why not try lavender (Lavandula angustifolia)? Lavender calms you when you’re stressed and provides a stellar flavor profile in desserts and cocktails. What do you have to lose?`,
+      userId: 6
+    }),
+    LikedItems.create({
+      productId: 9,
+      name: "Rubber Plant",
+      imageUrl:
+        "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_487/project%20prism%2Fcolor%20search%20archive%2F89f5a8844ff040228052e92b31ca867051e36b01",
+      price: 88.99,
+      description: `In recent years, the ubiquitous fiddle leaf fig has dominated all other entrants in the competition for most popular in-house tree-like plants. But we think it’s time to give this understated but stately tree — with its large, deep green leaves — a second look and another chance. Here’s how to maintain a rubber plant as a striking part of your home decor for years to come.`,
+      userId: 6,
+    }),
+    LikedItems.create({
+      productId: 1,
+      name: "Aloe Vera",
+      price: 12.99,
+      description: "Having an aloe vera plant around (and using it, should the need arise), can make even the most modern and high-tech of us feel like herbalist apothecaries. Snipping off a piece of an aloe vera’s leaf and applying the clear, cool gel on burns, cuts, rashes, and sunburns offers instant relief and can speed the healing process. Here's how to care for an aloe vera of your own.",
+      imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_488/at%2Farchive%2F8a1ff3f2d8ccbee3918ad01b75417e5b59f19686",
+      userId: 6
     })
   ])
 

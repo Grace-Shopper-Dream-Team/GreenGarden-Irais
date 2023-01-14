@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { createSingleOrder } from "../store/singleOrder";
@@ -13,12 +14,15 @@ const SingleProduct = (props) => {
 
   const [addedToCart, setAddedToCart] = useState(false)
   const [grayButtonColor, setGrayButtonColor] = useState(false)
+  const [liked, setLiked] = useState(false)
 
 
   useEffect(() => {
     props.getSingleProduct(props.match.params.productId)
   }, [])
-
+  const handleLiked = () => {
+    setLiked(true)
+  }
   return (
     <div id="single-product" className="column">
       <div id="single-product-detail" className="row">
@@ -65,6 +69,10 @@ const SingleProduct = (props) => {
           >
             {addedToCart ? 'Added to cart' : 'Add to cart'}
           </Button>
+          <Button onClick={handleLiked}>{liked ? 'Liked' : 'Like'}</Button>
+          <br></br>
+          <br></br>
+          <p>{liked ? 'Added to your liked items on your user dashboard!' : ''}</p>
         </div>
       </div>
       <hr />

@@ -10,6 +10,8 @@ import loggedInUserOrdersReducer from "./loggedInUserOrders";
 import usersReducer from "./allUsersView";
 import inventoryReducer from "./inventory";
 import { lineItemsReducer } from "./singleOrder";
+import likedItemsReducer from './likedItems';
+
 
 const reducer = combineReducers({
   auth,
@@ -20,6 +22,7 @@ const reducer = combineReducers({
   users: usersReducer,
   inventory: inventoryReducer,
   lineItems: lineItemsReducer,
+  likedItems: likedItemsReducer
 });
 
 const middleware = composeWithDevTools(

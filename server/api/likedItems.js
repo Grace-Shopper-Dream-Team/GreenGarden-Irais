@@ -1,5 +1,5 @@
 const likedItemsRouter = require("express").Router()
-const { models: { LikedItems } } = require("../db/")
+const { models: { LikedItems, User } } = require("../db/")
 const { requireToken } = require('./gatekeepingMiddleware')
 
 // add isAdmin middleware
@@ -12,11 +12,12 @@ likedItemsRouter.get("/", async (req, res, next) => {
     }
 })
 // add requireToken
-likedItemsRouter.get("/:userId", async (req, res, next) => {
+likedItemsRouter.get("/:token", async (req, res, next) => {
     try {
+        const user = await User.findByToken(req.params.token)
         const userLikedItems = await LikedItems.findAll({
             where: {
-                userId: req.params.userId
+                userId: user.id
             }
         })
         res.send(userLikedItems).status(200)

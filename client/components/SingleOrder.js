@@ -7,7 +7,7 @@ import { updateQuantity } from "../store/singleOrder";
 class SingleOrder extends React.Component {
   constructor() {
     super()
-    this.checkout = this.checkout.bind(this)
+    // this.checkout = this.checkout.bind(this)
   }
   // checkout() {
   //   console.log('in checkout')
