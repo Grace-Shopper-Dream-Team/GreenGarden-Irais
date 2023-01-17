@@ -44,6 +44,8 @@ module.exports = User;
  */
 User.prototype.correctPassword = function (candidatePwd) {
   //we need to compare the plain version to an encrypted version of the password
+  console.log(candidatePwd)
+  console.log("this.password", this.password)
   return bcrypt.compare(candidatePwd, this.password);
 };
 
@@ -54,9 +56,12 @@ User.prototype.generateToken = function () {
 /**
  * classMethods
  */
-User.authenticate = async function ({ username, password }) {
-  const user = await this.findOne({ where: { username } });
+User.authenticate = async function ({ username, password, email }) {
+  console.log("in user.authenticate", username, email)
+  const user = await this.findOne({ where: { username, email, } });
+  console.log("USER", user)
   if (!user || !(await user.correctPassword(password))) {
+    console.log('in error')
     const error = Error("Incorrect username/password");
     error.status = 401;
     throw error;
