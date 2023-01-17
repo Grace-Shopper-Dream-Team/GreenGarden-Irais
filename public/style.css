@@ -235,9 +235,9 @@ img {
   justify-content: space-evenly;
 }
 
-/* .height {
-  height: 0.5rem;
-} */
+.bold {
+  font-weight: bold;
+}
 
 .liked-items {
   width: 10rem;

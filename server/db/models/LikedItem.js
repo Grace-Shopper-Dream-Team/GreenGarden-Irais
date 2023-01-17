@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../db");
 
-const LikedItems = db.define("likeditem", {
+const LikedItem = db.define("likeditem", {
   productId: DataTypes.INTEGER,
   name: DataTypes.STRING, 
   price: DataTypes.DECIMAL, 
@@ -9,4 +9,4 @@ const LikedItems = db.define("likeditem", {
   imageUrl: DataTypes.STRING, 
 })
 
-module.exports = LikedItems
+module.exports = LikedItem

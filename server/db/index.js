@@ -7,7 +7,7 @@ const Address = require("./models/Address");
 const Product = require("./models/Product");
 const Order = require("./models/Order");
 const LineItem = require("./models/LineItem");
-const LikedItems = require("./models/LikedItems")
+const LikedItem = require("./models/LikedItem")
 
 
 Product.hasOne(LineItem, { foreignKey: "productId" });
@@ -17,8 +17,8 @@ Address.belongsTo(User);
 User.hasOne(Address);
 
 //liked items should have foreign key of user
-LikedItems.belongsTo(User) 
-User.hasMany(LikedItems)
+LikedItem.belongsTo(User) 
+User.hasMany(LikedItem)
 
 
 module.exports = {
@@ -29,6 +29,6 @@ module.exports = {
     Product,
     Order,
     LineItem,
-    LikedItems
+    LikedItem
   },
 };

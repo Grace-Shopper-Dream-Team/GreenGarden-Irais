@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Address, Product, LineItem, Order, LikedItems },
+  models: { User, Address, Product, LineItem, Order, LikedItem },
 } = require("../server/db");
 
 /**
@@ -287,7 +287,7 @@ async function seed() {
   ]);
 
   const likedItems = await Promise.all([
-    LikedItems.create({
+    LikedItem.create({
       productId: 1,
       name: "Aloe Vera",
       price: 12.99,
@@ -295,7 +295,7 @@ async function seed() {
       imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_488/at%2Farchive%2F8a1ff3f2d8ccbee3918ad01b75417e5b59f19686",
       userId: 1
     }),
-    LikedItems.create({
+    LikedItem.create({
       productId: 1,
       name: "Money Tree",
       price: 65.77,
@@ -303,7 +303,7 @@ async function seed() {
       imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_486/project%20prism%2Fcolor%20search%20archive%2F95356a0830788aa37fa166d9d8818fbada3ebb89",
       userId: 2
     }),
-    LikedItems.create({
+    LikedItem.create({
       productId: 1,
       name: "Money Tree",
       price: 65.77,
@@ -311,7 +311,7 @@ async function seed() {
       imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_486/project%20prism%2Fcolor%20search%20archive%2F95356a0830788aa37fa166d9d8818fbada3ebb89",
       userId: 3
     }),
-    LikedItems.create({
+    LikedItem.create({
       productId: 1,
       name: "Aloe Vera",
       price: 12.99,
@@ -319,7 +319,7 @@ async function seed() {
       imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_488/at%2Farchive%2F8a1ff3f2d8ccbee3918ad01b75417e5b59f19686",
       userId: 4
     }),
-    LikedItems.create({
+    LikedItem.create({
       productId: 9,
       name: "Rubber Plant",
       imageUrl:
@@ -328,7 +328,7 @@ async function seed() {
       description: `In recent years, the ubiquitous fiddle leaf fig has dominated all other entrants in the competition for most popular in-house tree-like plants. But we think it’s time to give this understated but stately tree — with its large, deep green leaves — a second look and another chance. Here’s how to maintain a rubber plant as a striking part of your home decor for years to come.`,
       userId: 5,
     }),
-    LikedItems.create({
+    LikedItem.create({
       productId: 4,
       name: "Lavender",
       imageUrl:
@@ -337,7 +337,7 @@ async function seed() {
       description: `Looking for a houseplant that will give back? Why not try lavender (Lavandula angustifolia)? Lavender calms you when you’re stressed and provides a stellar flavor profile in desserts and cocktails. What do you have to lose?`,
       userId: 6
     }),
-    LikedItems.create({
+    LikedItem.create({
       productId: 9,
       name: "Rubber Plant",
       imageUrl:
@@ -346,7 +346,7 @@ async function seed() {
       description: `In recent years, the ubiquitous fiddle leaf fig has dominated all other entrants in the competition for most popular in-house tree-like plants. But we think it’s time to give this understated but stately tree — with its large, deep green leaves — a second look and another chance. Here’s how to maintain a rubber plant as a striking part of your home decor for years to come.`,
       userId: 6,
     }),
-    LikedItems.create({
+    LikedItem.create({
       productId: 1,
       name: "Aloe Vera",
       price: 12.99,

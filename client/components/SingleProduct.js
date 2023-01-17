@@ -16,16 +16,21 @@ const SingleProduct = (props) => {
   const [addedToCart, setAddedToCart] = useState(false)
   const [grayButtonColor, setGrayButtonColor] = useState(false)
   const [liked, setLiked] = useState(false)
-
+  const [alreadyLiked, setAlreadyLiked] = useState(false)
 
   useEffect(() => {
     props.getSingleProduct(props.match.params.productId)
   }, [])
   const handleLiked = async () => {
-    setLiked(true)
     const productId = event.target.name
     const token = window.localStorage.getItem('token')
-    await axios.post(`/api/likedItems/createProduct/${token}/${productId}`)
+    const result = await axios.post(`/api/likedItems/createProduct/${token}/${productId}`)
+    console.log('result', result)
+    if (typeof result.data === 'string') {
+      setLiked(false)
+      setAlreadyLiked(true)
+    }
+    else setLiked(true)
 
 
   }
@@ -75,10 +80,11 @@ const SingleProduct = (props) => {
           >
             {addedToCart ? 'Added to cart' : 'Add to cart'}
           </Button>
-          {/* <div className='height'></div> */}
           <Button onClick={handleLiked} name={product.id}>{liked ? 'Liked' : 'Like'}</Button>
           <br></br>
-          <p>{liked ? 'Added to your liked items on your user dashboard!' : ''}</p>
+          <br></br>
+          <p className='bold'>{liked ? 'Added to your liked items on your user dashboard!' : ''}</p>
+          <p className='bold'>{alreadyLiked ? 'Already added to your liked items on your dashboard' : ''}</p>
         </div>
       </div>
       <hr />
