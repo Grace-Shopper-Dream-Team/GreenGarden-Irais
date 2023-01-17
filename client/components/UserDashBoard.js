@@ -9,7 +9,7 @@ const UserDashboard = (props) => {
         props.getLikedItems()
     }, [])
     return (
-        <div className='flex-for-liked-items'>
+        <div className='flex-for-liked-items '>
             <strong><h1>My liked plants</h1></strong>
             {props.likedItems.map(plant => {
                 return (<div key={plant.id}>

@@ -6,6 +6,7 @@ import { createSingleOrder } from "../store/singleOrder";
 import { createLineItemForLoggedInUser } from "../store/loggedInUserOrders";
 import { createLineItem } from "../store/singleOrder";
 import Button from 'react-bootstrap/Button';
+import axios from 'axios'
 
 const SingleProduct = (props) => {
   const product = props.product;
@@ -20,8 +21,13 @@ const SingleProduct = (props) => {
   useEffect(() => {
     props.getSingleProduct(props.match.params.productId)
   }, [])
-  const handleLiked = () => {
+  const handleLiked = async () => {
     setLiked(true)
+    const productId = event.target.name
+    const token = window.localStorage.getItem('token')
+    await axios.post(`/api/likedItems/createProduct/${token}/${productId}`)
+
+
   }
   return (
     <div id="single-product" className="column">
@@ -69,8 +75,8 @@ const SingleProduct = (props) => {
           >
             {addedToCart ? 'Added to cart' : 'Add to cart'}
           </Button>
-          <Button onClick={handleLiked}>{liked ? 'Liked' : 'Like'}</Button>
-          <br></br>
+          {/* <div className='height'></div> */}
+          <Button onClick={handleLiked} name={product.id}>{liked ? 'Liked' : 'Like'}</Button>
           <br></br>
           <p>{liked ? 'Added to your liked items on your user dashboard!' : ''}</p>
         </div>

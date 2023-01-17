@@ -234,3 +234,13 @@ img {
   display: flex;
   justify-content: space-evenly;
 }
+
+/* .height {
+  height: 0.5rem;
+} */
+
+.liked-items {
+  width: 10rem;
+  margin: 1rem;
+  transition: transform 300ms, box-shadow 300ms;
+}
