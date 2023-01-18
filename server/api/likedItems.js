@@ -31,7 +31,6 @@ likedItemsRouter.post("/createProduct/:token/:productId", async (req, res, next)
     try {
         const user = await User.findByToken(req.params.token)
         const findProduct = await Product.findOne({ where: { id: req.params.productId } })
-        // findProduct.userId = user.id
         const alreadyLiked = await LikedItem.findOne({ where: { userId: user.id, productId: findProduct.id, } })
         if (alreadyLiked) {
             res.send('Already like this plant').send(200)
@@ -44,11 +43,10 @@ likedItemsRouter.post("/createProduct/:token/:productId", async (req, res, next)
     }
 })
 
-likedItemsRouter.delete("/delete/:token/:productId", async (req, res, next) => {
+likedItemsRouter.delete("/delete/:token/:productName", async (req, res, next) => {
     try {
-        console.log('in delete')
         const user = await User.findByToken(req.params.token)
-        const findProduct = await Product.findOne({ where: { id: req.params.productId } })
+        const findProduct = await Product.findOne({ where: { name: req.params.productName } })
         await LikedItem.destroy({ where: { userId: user.id, productId: findProduct.id, } })
         res.send(findProduct).status(200)
     } catch (error) {

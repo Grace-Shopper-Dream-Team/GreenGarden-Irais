@@ -29,7 +29,7 @@ class FeaturedProduct extends React.Component {
                 src={ftProduct.imageUrl}
                 className="all-products-thumbnails"
               />
-              <p>{ftProduct.price}</p>
+              <p>$ {ftProduct.price}</p>
               <Link to={`/products/${ftProduct.id}`}>
                 <button className="btn btn-primary" type="button">
                   View Plant

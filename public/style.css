@@ -244,3 +244,14 @@ img {
   margin: 1rem;
   transition: transform 300ms, box-shadow 300ms;
 }
+
+.divider {
+  width: 9px;
+  height: auto;
+  display: inline-block;
+}
+
+.toast {
+  display: flex;
+  justify-content: center;
+}

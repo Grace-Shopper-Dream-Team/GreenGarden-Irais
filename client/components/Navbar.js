@@ -25,7 +25,7 @@ const renderNav = (handleClick, isLoggedIn, isAdmin) => {
           </a>
           <Link to="/products">All Products</Link>
           <Link to="/cart/loggedIn">Cart</Link>
-          <Link to="/userDashboard">My Dashboard</Link>
+          <Link to="/userWishlist">My Wishlist</Link>
         </div>
       );
     }

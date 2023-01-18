@@ -7,6 +7,8 @@ import { createLineItemForLoggedInUser } from "../store/loggedInUserOrders";
 import { createLineItem } from "../store/singleOrder";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
+import { Heart, HeartFill } from 'react-bootstrap-icons';
+import AddedToWishlistToast from './AddedToWishlistToast'
 
 const SingleProduct = (props) => {
   const product = props.product;
@@ -21,24 +23,27 @@ const SingleProduct = (props) => {
   useEffect(() => {
     props.getSingleProduct(props.match.params.productId)
   }, [])
+
   const handleLiked = async () => {
-    const productId = event.target.name
+    const productId = props.product.id
     const token = window.localStorage.getItem('token')
     const result = await axios.post(`/api/likedItems/createProduct/${token}/${productId}`)
-    console.log('result', result)
     if (typeof result.data === 'string') {
       setLiked(false)
       setAlreadyLiked(true)
     }
     else setLiked(true)
-
-
   }
+
   return (
     <div id="single-product" className="column">
+      {/* figure out how to move this to the end */}
       <div id="single-product-detail" className="row">
+        {liked ? <AddedToWishlistToast /> : ''}
         <div className="column rm1" key={product.id}>
           <img width="250px" height="250px" src={product.imageUrl} />
+          <br></br>
+          <br></br>
           <h1>{product.name}</h1>
           <p>Price: $ {product.price}</p>
           <p>Description: {product.desc}</p>
@@ -80,11 +85,12 @@ const SingleProduct = (props) => {
           >
             {addedToCart ? 'Added to cart' : 'Add to cart'}
           </Button>
-          <Button onClick={handleLiked} name={product.id}>{liked ? 'Liked' : 'Like'}</Button>
+          <div className='divider'></div>
+          {window.localStorage.getItem('token') ? <div className='divider'>{liked ? <HeartFill size={30} color="green" /> : <Heart onClick={handleLiked} size={30} color="green" />}</div> : ''}
           <br></br>
           <br></br>
-          <p className='bold'>{liked ? 'Added to your liked items on your user dashboard!' : ''}</p>
-          <p className='bold'>{alreadyLiked ? 'Already added to your liked items on your dashboard' : ''}</p>
+          <p className='bold'>{alreadyLiked ? 'Already added to your wishlist' : ''}</p>
+          <br></br>
         </div>
       </div>
       <hr />

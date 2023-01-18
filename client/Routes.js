@@ -12,7 +12,7 @@ import AllUsers from "./components/AllUsersView";
 import Inventory from "./components/Inventory";
 import SingleOrder from "./components/SingleOrder";
 import GuestHome from "./components/GuestHome";
-import UserDashboard  from './components/UserDashBoard';
+import UserWishlist from './components/UserWishlist';
 
 /**
  * COMPONENT
@@ -36,7 +36,7 @@ class Routes extends Component {
             <Route exact path="/cart/loggedIn" component={LoggedInUserCart} />
             <Route path="/users" component={AllUsers} />
             <Route path="/inventory" component={Inventory} />
-            <Route path="/userDashboard" component={UserDashboard} />
+            <Route path="/userWishlist" component={UserWishlist} />
             <Redirect to="/home" />
           </Switch>
         ) : (

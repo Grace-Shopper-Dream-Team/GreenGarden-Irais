@@ -296,7 +296,7 @@ async function seed() {
       userId: 1
     }),
     LikedItem.create({
-      productId: 1,
+      productId: 8,
       name: "Money Tree",
       price: 65.77,
       description: "If you’ve ever noticed a little potted tree with an unusual braided trunk (that’s one on the far left in the photo above), you’ve encountered a money tree. The trunk braid and leaves have symbolism for many people who believe that they bring good luck and financial success.",
@@ -304,7 +304,7 @@ async function seed() {
       userId: 2
     }),
     LikedItem.create({
-      productId: 1,
+      productId: 8,
       name: "Money Tree",
       price: 65.77,
       description: "If you’ve ever noticed a little potted tree with an unusual braided trunk (that’s one on the far left in the photo above), you’ve encountered a money tree. The trunk braid and leaves have symbolism for many people who believe that they bring good luck and financial success.",
@@ -329,7 +329,7 @@ async function seed() {
       userId: 5,
     }),
     LikedItem.create({
-      productId: 4,
+      productId: 5,
       name: "Lavender",
       imageUrl:
         "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_488/at%2Fart%2Fphoto%2F2019-05%2Fgrowing-lavender-indoors%2Flead",
