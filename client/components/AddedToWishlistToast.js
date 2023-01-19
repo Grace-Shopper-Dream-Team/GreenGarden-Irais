@@ -5,13 +5,12 @@ import Toast from 'react-bootstrap/Toast';
 
 function AddedToWishListToast() {
   const [showA, setShowA] = useState(true);
-  const [showB, setShowB] = useState(true);
 
   const toggleShowA = () => setShowA(!showA);
 
   return (
     <div>
-      <Row>
+      <Row className='toast'>
         <Col md={6} className="mb-2">
           <Toast show={showA} onClose={toggleShowA}>
             <Toast.Header>

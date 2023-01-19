@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../store/singleProduct";
 import { createSingleOrder } from "../store/singleOrder";
@@ -37,15 +36,14 @@ const SingleProduct = (props) => {
 
   return (
     <div id="single-product" className="column">
-      {/* figure out how to move this to the end */}
+      {liked ? <AddedToWishlistToast /> : ''}
       <div id="single-product-detail" className="row">
-        {liked ? <AddedToWishlistToast /> : ''}
         <div className="column rm1" key={product.id}>
           <img width="250px" height="250px" src={product.imageUrl} />
           <br></br>
           <br></br>
           <h1>{product.name}</h1>
-          <p>Price: $ {product.price}</p>
+          <p> $ {product.price}</p>
           <p>Description: {product.desc}</p>
           <Button
             variant={grayButtonColor ? 'secondary' : "primary"}
