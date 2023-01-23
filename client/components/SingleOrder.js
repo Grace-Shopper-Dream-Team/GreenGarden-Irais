@@ -6,7 +6,7 @@ import { updateQuantity } from "../store/singleOrder";
 
 class SingleOrder extends React.Component {
   constructor() {
-    super()
+    super();
     // this.checkout = this.checkout.bind(this)
   }
   // checkout() {
@@ -42,7 +42,6 @@ class SingleOrder extends React.Component {
     const order = this.props.currentOrder;
     const lineItems = this.props.currentLineItems;
 
-
     // Calculate cart subtotal
     let total = 0;
     for (let i = 0; i < lineItems.length; i++) {
@@ -54,7 +53,7 @@ class SingleOrder extends React.Component {
 
     return (
       <div className="entire-cart">
-        <h3>🛒 Shopping Cart 🛒</h3>
+        <h3 className="bold">🛒 Shopping Cart 🛒</h3>
         {order.id ? (
           <div>
             <p>
@@ -135,12 +134,14 @@ class SingleOrder extends React.Component {
             </div>
           ))
         ) : (
-          <h3>Your Cart is Empty 🛒</h3>
+          <h3 className="bold">Your Cart is Empty 😭</h3>
         )}
         {order.id ? (
           <div>
             <Link to={"/confirmation"}>
-              <button className="btn btn-primary" onClick={this.checkout}>Checkout</button>
+              <button className="btn btn-primary" onClick={this.checkout}>
+                Checkout
+              </button>
             </Link>
           </div>
         ) : null}

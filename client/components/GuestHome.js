@@ -33,15 +33,16 @@ class GuestHome extends React.Component {
           </div>
         </div>
         <div className="trending-container">
-          <h3>What's Trending</h3>
+          <h3 className='bold'>What's Trending</h3>
           <div className="trending-view">
             {slicedProducts.map((product) => (
               <div key={product.id} className="all-products-tile">
-                <h5>{product.name}</h5>
                 <img
                   src={product.imageUrl}
                   className="all-products-thumbnails"
                 />
+                <br></br>
+                <h5 className='bold'>{product.name}</h5>
                 <p>$ {product.price}</p>
 
                 <Link to={`/products/${product.id}`}>

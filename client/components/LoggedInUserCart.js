@@ -46,9 +46,11 @@ class LoggedInUserCart extends Component {
     });
     total = total.toFixed(2);
 
+    let itemNum = 0
+
     return (
       <div className="entire-cart">
-        <h3>🛒 Shopping Cart 🛒</h3>
+        <h3 className="bold">🛒 Shopping Cart 🛒</h3>
         {userLineItems.length === 0 ? null : (
           <div>
             {" "}
@@ -69,20 +71,20 @@ class LoggedInUserCart extends Component {
           {userLineItems.map((userLineItem, idx) => {
             return (
               <div className="cart-item" key={idx}>
-                <h2>
-                  <strong className="black">Item name: </strong>
-                  {userLineItem.product.name} 🪴
-                </h2>
+                <h4> Item number {itemNum += 1}</h4>
                 <img
                   src={userLineItem.product.imageUrl}
                   className="cart-image"
                 />
-                <p>
-                  <strong className="black">Item Price: </strong> $
+                <h4 className="bold">
+                  {userLineItem.product.name} 🪴
+                </h4>
+                <p className="bold">
+                  <strong className="black">Price: </strong> $
                   {userLineItem.price}
                 </p>
-                <p>
-                  <strong className="black">Item Quantity: </strong>{" "}
+                <p className="bold">
+                  <strong className="black">Quantity: </strong>{" "}
                   {userLineItem.qty}
                 </p>
                 <div className="btn btn-primary2">

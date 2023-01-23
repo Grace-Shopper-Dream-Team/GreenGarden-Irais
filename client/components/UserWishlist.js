@@ -19,8 +19,7 @@ const UserDashboard = (props) => {
     <div>
       {props.likedItems.length ? (
         <div>
-          <h1 className="bold">My Wishlist</h1>
-          <br></br>
+          <h1 className="bold">My Wishlist 🍃✨🪴</h1>
           <br></br>
           <div className="flex-for-liked-items ">
             {props.likedItems.map((plant) => {
@@ -32,7 +31,11 @@ const UserDashboard = (props) => {
                       <Card.Title className="bold ">{plant.name}</Card.Title>
                       <Card.Text>Description: {plant.description}</Card.Text>
                       <Card.Text>Price: ${plant.price}</Card.Text>
-                      <Button onClick={handleUnlike} name={plant.name}>
+                      <Button
+                        onClick={handleUnlike}
+                        name={plant.name}
+                        variant="danger"
+                      >
                         Remove
                       </Button>
                     </Card.Body>
@@ -44,7 +47,7 @@ const UserDashboard = (props) => {
           </div>
         </div>
       ) : (
-        <h1>You have no plants in your wishlist :(.</h1>
+        <h1 className="bold">You have no plants in your wishlist :(.</h1>
       )}
     </div>
   );
