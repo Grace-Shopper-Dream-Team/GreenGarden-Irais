@@ -55,9 +55,7 @@ const SingleProduct = (props) => {
           <p> $ {product.price}</p>
           <p>Description: {product.desc}</p>
           {addedToCart ? (
-            <Button variant="secondary" disabled>
-              Added To Cart!
-            </Button>
+            <Button variant="warning">Added To Cart!</Button>
           ) : (
             <Button
               variant={grayButtonColor ? "secondary" : "primary"}
