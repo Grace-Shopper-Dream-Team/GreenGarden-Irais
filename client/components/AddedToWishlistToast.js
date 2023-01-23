@@ -10,7 +10,7 @@ function AddedToWishListToast() {
 
   return (
     <div>
-      <Row className='toast'>
+      <Row className='toast'>>
         <Col md={6} className="mb-2">
           <Toast show={showA} onClose={toggleShowA}>
             <Toast.Header>
@@ -20,7 +20,6 @@ function AddedToWishListToast() {
                 alt=""
               />
               <strong className="me-auto">Green Garden</strong>
-              {/* <small>11 mins ago</small> */}
             </Toast.Header>
             <Toast.Body>Added to your Wishlist!</Toast.Body>
           </Toast>
