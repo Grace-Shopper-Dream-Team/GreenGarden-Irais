@@ -237,6 +237,7 @@ img {
 
 .bold {
   font-weight: bold;
+  font-family: "Bree Serif";
 }
 
 .liked-items {
@@ -251,7 +252,7 @@ img {
   display: inline-block;
 }
 
-.toast {
+.toast-flex {
  display: flex;
  justify-content: flex-end;
 }

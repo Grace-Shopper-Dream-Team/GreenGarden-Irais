@@ -51,42 +51,51 @@ const SingleProduct = (props) => {
           <img width="250px" height="250px" src={product.imageUrl} />
           <br></br>
           <br></br>
-          <h1>{product.name}</h1>
+          <h1 className="bold">{product.name}</h1>
           <p> $ {product.price}</p>
           <p>Description: {product.desc}</p>
-          <Button
-            variant={grayButtonColor ? "secondary" : "primary"}
-            type="button"
-            onClick={() => {
-              if (token) {
-                if (userLineItemNames.includes(product.name)) {
-                  window.alert(
-                    "This item is already in your cart. Please go to your cart to change the quantity 💚."
-                  );
+          {addedToCart ? (
+            <Button variant="secondary" disabled>
+              Added To Cart!
+            </Button>
+          ) : (
+            <Button
+              variant={grayButtonColor ? "secondary" : "primary"}
+              type="button"
+              onClick={() => {
+                if (token) {
+                  if (userLineItemNames.includes(product.name)) {
+                    window.alert(
+                      "This item is already in your cart. Please go to your cart to change the quantity 💚."
+                    );
+                  } else {
+                    setAddedToCart(true);
+                    setGrayButtonColor(true);
+                    props.createLineItemForLoggedInUser(product);
+                  }
                 } else {
-                  setAddedToCart(true);
-                  setGrayButtonColor(true);
-                  props.createLineItemForLoggedInUser(product);
+                  if (props.currentOrder.length === 0) {
+                    setAddedToCart(true);
+                    setGrayButtonColor(true);
+                    props.createSingleOrder(product);
+                  } else if (
+                    props.currentLineItemNames.includes(product.name)
+                  ) {
+                    window.alert(
+                      "This item is already in your cart. Please go to your cart to change the quantity 💚."
+                    );
+                  } else {
+                    setAddedToCart(true);
+                    setGrayButtonColor(true);
+                    props.createLineItem(product, props.currentOrder.id);
+                  }
                 }
-              } else {
-                if (props.currentOrder.length === 0) {
-                  setAddedToCart(true);
-                  setGrayButtonColor(true);
-                  props.createSingleOrder(product);
-                } else if (props.currentLineItemNames.includes(product.name)) {
-                  window.alert(
-                    "This item is already in your cart. Please go to your cart to change the quantity 💚."
-                  );
-                } else {
-                  setAddedToCart(true);
-                  setGrayButtonColor(true);
-                  props.createLineItem(product, props.currentOrder.id);
-                }
-              }
-            }}
-          >
-            {addedToCart ? "Added to cart" : "Add to cart"}
-          </Button>
+              }}
+            >
+              Add to cart
+            </Button>
+          )}
+
           <div className="divider"></div>
           {window.localStorage.getItem("token") ? (
             <div className="divider">
@@ -102,7 +111,11 @@ const SingleProduct = (props) => {
           <br></br>
           <br></br>
           <p className="bold">
-            {alreadyLiked ? "Already added to your wishlist" : ""}
+            {alreadyLiked ? (
+              <p style={{ color: "red" }}>Already added to your wishlist</p>
+            ) : (
+              ""
+            )}
           </p>
           <br></br>
         </div>
